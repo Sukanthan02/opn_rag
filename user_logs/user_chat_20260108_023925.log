@@ -1,0 +1,35 @@
+================================================================================
+User (Session: qkwjdkjq): hi
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. The query 'hi' is a generic greeting with no clear intent or relevance to any available agents or their capabilities.
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: qkwjdkjq): i want to create a document
+[ACTIVATED] Clarification (Vague Query Detection)
+================================================================================
+================================================================================
+User (Session: qkwjdkjq): call document agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: Got it – I’ll hand this over to the Document Creation Agent, which will generate the document once everything’s validated. Ready to get started?
+================================================================================
+================================================================================
+User (Session: qkwjdkjq): i need document agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: Got it – I’ll pass this to the Document Creation Agent, which will build your document after the quality check is cleared. Shall we go ahead and route you there?
+================================================================================
+================================================================================
+User (Session: qkwjdkjq): i want to send email agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: Got it – I’ll hand this over to the Email Sending Agent so it can prepare and dispatch your emails with the right attachments. Shall I connect you?
+================================================================================
+================================================================================
+User (Session: qkwjdkjq):  i want to create document 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: I’ll hand this over to the Document Creation Agent so it can build your document after the quality check. Shall I go ahead and route you there?
+================================================================================
+================================================================================
+User (Session: kv):  i want to create document 
+[ACTIVATED] Clarification (Vague Query Detection)
+================================================================================

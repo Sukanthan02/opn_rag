@@ -1,0 +1,18 @@
+================================================================================
+User (Session: default_session): i want to create document
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: You're looking to create a document, which is a key part of our Open Negotiation workflow.
+
+We can help generate various types of documents using our Document Creation Agent, tailored to your specific needs.
+
+Could you provide more details about the kind of document you want to create and its purpose?
+
+For example, you could tell me:
+• Is this document for a new client?
+• Are you looking to create a document that outlines negotiation terms?
+================================================================================
+================================================================================
+User (Session: default_session): i want to create book
+[ACTIVATED] Clarification (Progressive)
+Assistant: What kind of book are you looking to create, is it a novel, a non-fiction book, or perhaps a collection of stories, and do you have any specific requirements for the book's format or structure?
+================================================================================

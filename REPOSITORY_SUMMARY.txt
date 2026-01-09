@@ -1,0 +1,208 @@
+================================================================================
+                    RAG AI AGENT ROUTER - REPOSITORY SUMMARY
+================================================================================
+
+WHAT IS THIS PROJECT?
+------------------------------------------------------------------------------
+This is a RAG (Retrieval-Augmented Generation) Agent Routing System built with 
+FastAPI. It intelligently routes user queries to appropriate AI agents and 
+subagents using a combination of:
+  - Vector similarity search (Qdrant + Nomic embeddings)
+  - LLM-powered decision making (Gemini + Ollama)
+  - Multi-turn conversation with clarification
+
+================================================================================
+                              PROJECT STRUCTURE
+================================================================================
+
+RAG AI dec 25 v2/
+├── app/
+│   ├── main.py              # FastAPI entry point
+│   ├── config.py            # Configuration (DB, LLM, embedding settings)
+│   ├── schemas.py           # Pydantic models for API requests/responses
+│   ├── logger.py            # Logging setup
+│   │
+│   ├── api/                  # API Endpoints
+│   │   ├── chat.py           # Main chat/routing endpoint
+│   │   ├── ingest.py         # Agent/subagent ingestion API
+│   │   └── retrieve.py       # Vector search API
+│   │
+│   ├── db/                   # Database Connections
+│   │   ├── mysql.py          # MySQL/SQLAlchemy setup
+│   │   └── qdrant.py         # Qdrant vector DB setup
+│   │
+│   ├── models/               # SQLAlchemy ORM Models
+│   │   ├── agent.py          # Agent table
+│   │   └── subagent.py       # SubAgent table (FK to Agent)
+│   │
+│   ├── embeddings/           # Vector Embeddings
+│   │   └── nomic_local.py    # Nomic AI embedding model
+│   │
+│   └── services/             # Business Logic
+│       ├── llm_service.py           # Gemini/Ollama API calls, routing logic
+│       ├── conversation_service.py  # Multi-turn conversation management
+│       ├── agent_inquiry_service.py # Agent capability questions
+│       ├── ingest_service.py        # Agent ingestion to MySQL + Qdrant
+│       └── retrieval_service.py     # Vector similarity search
+│
+├── qdrant_data/              # Local Qdrant vector storage
+├── logs/                     # Application logs
+└── requirements.txt          # Python dependencies
+
+================================================================================
+                             ARCHITECTURE FLOW
+================================================================================
+
+1. AGENT INGESTION FLOW (/ingest/agent, /ingest/subagent)
+------------------------------------------------------------------------------
+
+┌──────────────┐     ┌────────────────┐     ┌──────────────┐
+│  API Request │────>│  Ingest Service│────>│   MySQL DB   │
+│  (name, desc)│     │                │     │  (metadata)  │
+└──────────────┘     │  1. Generate   │     └──────────────┘
+                     │     UUID       │
+                     │  2. Create     │     ┌──────────────┐
+                     │     Nomic      │────>│  Qdrant DB   │
+                     │     Embedding  │     │  (vectors)   │
+                     └────────────────┘     └──────────────┘
+
+
+2. MAIN CHAT/ROUTING FLOW (/chat/chat)
+------------------------------------------------------------------------------
+
+                            USER QUERY
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│               STEP 1: Agent Inquiry Check (Ollama)                       │
+│   "Is user asking ABOUT agents, or asking TO USE agents?"               │
+│                                                                          │
+│   YES → Answer with agent info (Gemini) → Return AgentInquiryResponse   │
+│   NO  → Continue to routing...                                          │
+└───────────────────────────────┬─────────────────────────────────────────┘
+                                ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│               STEP 2: CONVERSATION_MODE Check                            │
+│                                                                          │
+│   If CONVERSATION_MODE = False:                                         │
+│   └──> Direct routing via vector search + LLM → RoutingResponse         │
+│                                                                          │
+│   If CONVERSATION_MODE = True (Recommended):                            │
+│   └──> 4-Stage Clarification Pipeline (below)                          │
+└───────────────────────────────┬─────────────────────────────────────────┘
+                                ▼
+
+================================================================================
+          4-STAGE CLARIFICATION PIPELINE (Conversation Mode)
+================================================================================
+
+STAGE 2a: VAGUE QUERY DETECTION (First Turn Only)
+  ├── Uses Gemini to analyze query quality
+  ├── If vague/out-of-context → Ask strong clarification
+  └── Returns ClarificationResponse with guidance
+
+STAGE 2b: EVALUATE ROUTING READINESS
+  ├── LLM evaluates if enough info to route (confidence >= 80%)
+  └── If NO → Continue to progressive clarification
+
+STAGE 2c: ASK CONFIRMATION (Before Routing)
+  ├── If ready to route → Ask user to confirm
+  ├── Shows target agent/subagent + summary
+  └── Returns confirmation response
+
+STAGE 2d: FINAL ROUTING (User Confirmed)
+  ├── Finalize session with agent selection
+  ├── Generate friendly routing message
+  └── Return RoutingResponse + clean up session
+
+STAGE 2e: PROGRESSIVE CLARIFICATION (Need More Info)
+  ├── Ask context-aware clarification questions
+  ├── Suggest relevant agents
+  └── Loop until routing is ready
+
+================================================================================
+                             KEY COMPONENTS
+================================================================================
+
+DATABASES
+------------------------------------------------------------------------------
+| Database  | Purpose                              | Storage               |
+|-----------|--------------------------------------|-----------------------|
+| MySQL     | Agent/SubAgent metadata, capabilities| Persistent            |
+| Qdrant    | Vector embeddings for similarity     | Local (./qdrant_data) |
+
+
+LLM SERVICES (Hybrid Approach)
+------------------------------------------------------------------------------
+| Task                        | LLM Mode  | Model                       |
+|-----------------------------|-----------|----------------------------|
+| Agent inquiry detection     | Offline   | Ollama (Llama 3.1 8B)      |
+| Confirmation detection      | Offline   | Ollama                     |
+| Query quality analysis      | Offline   | Ollama                     |
+| Route agent                 | Online    | Gemini 2.5 Flash Lite      |
+| Answer agent inquiry        | Online    | Gemini                     |
+| Progressive clarification   | Online    | Gemini                     |
+
+
+EMBEDDINGS
+------------------------------------------------------------------------------
+- Model: nomic-ai/nomic-embed-text-v1 (768-dim vectors)
+- Local: Uses sentence-transformers library
+
+================================================================================
+                              API ENDPOINTS
+================================================================================
+
+| Endpoint              | Method | Purpose                              |
+|-----------------------|--------|--------------------------------------|
+| /chat/chat            | POST   | Main chat interface with routing     |
+| /chat/clear-session   | POST   | Clear conversation session           |
+| /ingest/agent         | POST   | Create new agent                     |
+| /ingest/subagent      | POST   | Create subagent under agent          |
+| /search/retrieve      | GET    | Vector similarity search             |
+
+================================================================================
+                              KEY FEATURES
+================================================================================
+
+1. INTELLIGENT AGENT ROUTING
+   - Routes user queries to the most appropriate agent/subagent
+
+2. MULTI-TURN CONVERSATION
+   - Maintains context across multiple exchanges
+
+3. RAG-BASED RETRIEVAL
+   - Uses vector similarity to find relevant agents
+
+4. CLARIFICATION HANDLING
+   - Detects vague queries and asks for clarification
+
+5. CONFIRMATION FLOW
+   - Confirms with user before final routing
+
+6. HYBRID LLM
+   - Uses cloud (Gemini) for complex tasks
+   - Uses local (Ollama) for simple detection tasks
+
+7. DETAILED LOGGING
+   - Separate loggers for conversations, routing, and user activity
+
+================================================================================
+                              RESPONSE TYPES
+================================================================================
+
+| Type            | Description                                    |
+|-----------------|------------------------------------------------|
+| routing         | Final routing decision with agent/subagent     |
+| agent_inquiry   | Information about available agents             |
+| clarification   | Asking user for more details                   |
+| confirmation    | Confirming routing before proceeding           |
+
+================================================================================
+
+This architecture enables a conversational, intelligent routing system that 
+guides users to the right agent even when their initial query is unclear!
+
+================================================================================
+                         Generated: 2026-01-06
+================================================================================

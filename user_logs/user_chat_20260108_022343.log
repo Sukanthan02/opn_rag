@@ -1,0 +1,22 @@
+================================================================================
+User (Session: ashdkkhasvd): hi 
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query is too brief and lacks clear meaning or intent
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: ashdkkhasvd): i need document agent 
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: You're looking to work with documents in the Open Negotiation workflow, but the specifics are unclear.
+
+We can assist with various document-related tasks, from creation and validation to emailing and renaming, depending on your exact needs.
+
+Are you trying to create new documents, validate existing ones, or handle them in some other way?
+
+For example, you could tell me:
+• Are you working with client-specific templates?
+• Do you need to ensure document quality before proceeding?
+================================================================================
+================================================================================
+User (Session: ashdkkhasvd): I need to work with documents

@@ -1,0 +1,11 @@
+================================================================================
+User (Session: 1423): i need to call email agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: Should I route you to Email Sending Agent?
+================================================================================
+================================================================================
+User (Session: 1423): yes
+[ACTIVATED] Routing (Confirmed)
+[ROUTED TO] Open Negotiation AI Agent/Email Sending Agent
+Assistant: "I've got it - you need help sending an email. I'm routing you to our Email Sending Agent who will assist you with that."
+================================================================================

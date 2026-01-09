@@ -1,0 +1,47 @@
+================================================================================
+User (Session: qlkefnnlnwe): i need document
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: asdkckassc): i need document agent 
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: asdkckassc): what are the agent u have and which agent useful for create pdf
+[ACTIVATED] Agent Inquiry
+Assistant: To answer your query: 
+
+The agents available are:
+1. Open Negotiation AI Agent (MAIN AGENT)
+2. Quality Check Agent (SUBAGENT)
+3. Document Creation Agent (SUBAGENT)
+4. Email Sending Agent (SUBAGENT)
+5. File Rename Agent (SUBAGENT)
+
+As for which agent is useful for creating PDF files:
+Yes, the Document Creation Agent can generate PDF files, as "pdf generation" is listed among its capabilities.
+================================================================================
+================================================================================
+User (Session: asdkckassc): i want to create document so call document agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: You need to create a document, and the Document Creation Agent under the Open Negotiation AI Agent is the perfect fit for this task. It'll handle the document generation for you. Shall I connect you to get your document created?
+================================================================================
+================================================================================
+User (Session: asdkckassc): i want to create document
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: Should I route you to Document Creation Agent?
+================================================================================
+================================================================================
+User (Session: aksfd): hi
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query is too brief and lacks clear meaning or intent
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: aksfd): i want to create document 
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================

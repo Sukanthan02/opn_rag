@@ -1,0 +1,27 @@
+================================================================================
+User (Session: default_session): i want to create document
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: default_session): i need email agent 
+[ACTIVATED] Clarification (Progressive)
+Assistant: Now that you need an email agent, can you tell me what kind of document you're looking to create and send via email, and is this a one-time task or an ongoing process?
+================================================================================
+================================================================================
+User (Session: qlkefnnlnwe): hi
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query is too brief and lacks clear meaning or intent
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: qlkefnnlnwe): i want to create document
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: qlkefnnlnwe): i need document
+[ACTIVATED] Clarification (Progressive)
+Assistant: What kind of document are you trying to create, and do you have any specific templates or branding guidelines that need to be followed?
+================================================================================

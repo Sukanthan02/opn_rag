@@ -1,0 +1,46 @@
+================================================================================
+User (Session: default_session): I want to send an email
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: default_session): I want to send an email
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: Should I route you to Email Sending Agent?
+================================================================================
+================================================================================
+User (Session: default_session): i need document agent
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: Should I route you to Document Creation Agent?
+================================================================================
+================================================================================
+User (Session: default_session): yes
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query is too brief and lacks clear meaning or intent
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: reiyg): i want to create a document and send email
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: reiyg): i want to create a document and send email
+[ACTIVATED] Clarification (Progressive)
+Assistant: I can help with creating a document and sending an email, but I need a bit more information. 
+• Document Creation: create a new document
+• Email Sending: send an email to someone
+
+Which one should I proceed with?
+================================================================================
+================================================================================
+User (Session: ljkh): i want to create a document and send email
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: wjbf): i want to create book
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================

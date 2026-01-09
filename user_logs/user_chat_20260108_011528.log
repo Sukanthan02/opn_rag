@@ -1,0 +1,12 @@
+================================================================================
+User (Session: kajbckj): hi
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query is too brief and lacks clear meaning or intent
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: kajbckj): i need document agent 
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================

@@ -1,0 +1,21 @@
+================================================================================
+User (Session: sasd ): i want to create document
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: You're looking to create a document, and the Document Creation Agent is the perfect fit for this task. It'll take care of generating the document with the right template and branding. Shall I connect you to get started?
+================================================================================
+================================================================================
+User (Session: sasd ): i want to create document and send email
+[ACTIVATED] Clarification (Progressive)
+Assistant: I can help with creating a document and sending an email, but I need a bit more information. 
+• Document Creation: create a new document with the right template and branding
+• Email Sending: send an email to your contacts
+
+Which one should I proceed with?
+================================================================================
+================================================================================
+User (Session: sasd ): i want to create a book 
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query is unrelated to available agent capabilities (document creation, email, file management, etc.) as it pertains to creating a book, which is not within the scope of the provided agents
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================

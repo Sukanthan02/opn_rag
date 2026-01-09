@@ -1,0 +1,10 @@
+================================================================================
+User (Session: default_session): i want document agent 
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: 
+================================================================================
+================================================================================
+User (Session: default_session): i want to create document
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: You're looking to create a document, and the Document Creation Agent is the perfect fit for this task. It'll handle all the heavy lifting to produce a standardized output file. Shall I connect you to get your document creation started?
+================================================================================

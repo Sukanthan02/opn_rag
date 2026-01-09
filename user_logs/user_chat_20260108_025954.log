@@ -1,0 +1,44 @@
+================================================================================
+User (Session: gm): purpose of email agent 
+[ACTIVATED] Clarification (Progressive)
+Assistant: I can help with that. Please pick the focus you’d like:
+
+- Open Negotiation AI Agent – Email Sending Subagent: explains what the email agent does and how it works  
+- General Information Agent: provides a broader overview of AI agents and their purposes  
+
+Which one should I proceed with?
+================================================================================
+================================================================================
+User (Session: gm): purpose of email agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+================================================================================
+================================================================================
+User (Session: sjbd): purpose of email agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: Got it—you're interested in the purpose of the Email Sending Agent, which handles composing, sending, and recording Open Negotiation emails. Want me to pull up that info for you?
+================================================================================
+================================================================================
+User (Session: sjbd): explain about all agent 
+[ACTIVATED] Clarification (Progressive)
+Assistant: I can help with that—your request could match several parts of the system. Please pick the one you’d like to explore:
+
+- **Open Negotiation AI Agent** – the overall orchestrator that coordinates the whole workflow.  
+- **Quality Check Agent** – reviews and validates documents before they’re sent.  
+- **Document Creation Agent** – generates the negotiation documents and drafts.  
+- **Email Sending Agent** – composes, sends, and logs negotiation emails.  
+- **File Rename Agent** – renames and organizes files generated during the process.  
+
+Which option should I proceed with?
+================================================================================
+================================================================================
+User (Session: kf): explain about all agent 
+[ACTIVATED] Clarification (Progressive)
+Assistant: I can help with that! Please pick the area you’d like to explore:
+
+- General Knowledge Agent – answers a wide range of factual questions.  
+- Programming Assistant – helps with code, debugging, and algorithm explanations.  
+- Creative Writing Agent – assists with stories, poems, and other creative text.  
+- Data Analysis Agent – guides you through statistics, visualizations, and data insights.  
+
+Which one should I focus on?
+================================================================================

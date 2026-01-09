@@ -1,0 +1,52 @@
+================================================================================
+User (Session: test_curl): I want to send an email
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: You're looking to send an email, and the Email Sending Agent is the perfect fit for this task. It'll take care of composing the email, attaching the right documents, and sending it to the correct recipients. Ready to get started?
+================================================================================
+================================================================================
+User (Session: test_curl): yes
+[ACTIVATED] Routing (Confirmed)
+[ROUTED TO] Open Negotiation AI Agent/Email Sending Agent
+Assistant: You've confirmed, so I'm going to route you to the Email Sending Agent who can assist you with sending an email. They'll be able to help you with your email needs.
+================================================================================
+================================================================================
+User (Session: test_junk): asdfghjkl
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query appears to be random text without clear meaning or intent
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: kjwebfkjnw): hi
+[ACTIVATED] Query Validation (Rejected)
+Assistant: I'm sorry, but I couldn't process your query. Query is too brief and lacks clear meaning or intent
+
+Please provide a clear question or request related to the available agents. You can ask 'What agents are available?' to see what I can help you with.
+================================================================================
+================================================================================
+User (Session: kjwebfkjnw): purpose of email agent 
+[ACTIVATED] Agent Inquiry
+Assistant: The purpose of the Email Sending Agent is to automate the controlled distribution of Open Negotiation emails to clients. Its capabilities include email metadata consumption, email subject handling, recipient mapping, client-specific email composition, attachment association, and per-client email dispatch. 
+
+To answer your question directly: The Email Sending Agent's purpose is to send emails, and its capabilities include "email delivery execution", "individual email sending", and "batch email processing".
+================================================================================
+================================================================================
+User (Session: kjwebfkjnw): i want to create a document and send email 
+[ACTIVATED] Clarification (Progressive)
+Assistant: I can help with creating a document and sending an email, but I need a bit more information. Please choose what you want to focus on:
+• Document Creation: create a new document
+• Email Sending: send an email
+
+Which one should I proceed with?
+================================================================================
+================================================================================
+User (Session: kjwebfkjnw): i want to do send email
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: You're looking to send an email, and the Email Sending Agent is the perfect fit for this task. It'll take care of composing and sending the email to the right people. Ready to get started?
+================================================================================
+================================================================================
+User (Session: kjwebfkjnw): yes
+[ACTIVATED] Routing (Confirmed)
+[ROUTED TO] Open Negotiation AI Agent/Email Sending Agent
+Assistant: You've confirmed, so I'm routing you to the Email Sending Agent to assist with sending an email. They'll be able to help you with your email needs.
+================================================================================

@@ -1,0 +1,25 @@
+================================================================================
+User (Session: 124): i want to send email
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: I can certainly help you with sending emails as part of the Open Negotiation process!
+
+My role is to manage the entire negotiation workflow, and sending emails is a key step. Before we can send emails, we need to make sure all the necessary documents are created and validated.
+
+To help you best, could you tell me where you are in the process? For example, have you already created the documents that need to be sent, or are you looking to start the entire process from the beginning?
+
+For example, you could tell me:
+• Are you ready to send emails with documents that have already been generated?
+• Would you like to start by creating and validating documents first, and then send them?
+• Are you looking to send a specific type of email, like a notice or a confirmation?
+================================================================================
+================================================================================
+User (Session: 124): no i just want to execute email agent 
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: Should I route you to Email Sending Agent?
+================================================================================
+================================================================================
+User (Session: 124): yes do that 
+[ACTIVATED] Routing (Confirmed)
+[ROUTED TO] Open Negotiation AI Agent/Email Sending Agent
+Assistant: "I've got it - you need to send an email. I'm sending you over to our Email Sending Agent who'll help get that taken care of."
+================================================================================

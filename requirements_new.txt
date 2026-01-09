@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+mysql-connector-python
+qdrant-client
+nomic
+google-genai
+ollama
+einops
+sentence-transformers
+sqlalchemy
+requests

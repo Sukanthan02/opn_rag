@@ -1,0 +1,11 @@
+================================================================================
+User (Session: default_session): which agent u suggest me for sending email 
+[ACTIVATED] Agent Inquiry
+Assistant: To send an email, I suggest using the Email Sending Agent. 
+
+The Email Sending Agent has the capability for "email sending" and related tasks such as "email composition", "attachment association", "per-client email dispatch", and "email delivery execution". 
+
+This agent can compose emails using validated metadata, attach the correct documents, send emails individually per client, and ensure accurate communication and record retention for every sent email.
+================================================================================
+================================================================================
+User (Session: default_session): i want to create document

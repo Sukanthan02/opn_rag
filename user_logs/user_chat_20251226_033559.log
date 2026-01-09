@@ -1,0 +1,50 @@
+================================================================================
+User (Session: mwjefbkbwqjk): what are the agents you have
+[ACTIVATED] Agent Inquiry
+Assistant: I have the following agents:
+
+*   **MAIN AGENT: Open Negotiation AI Agent**
+    *   Capabilities: master workflow orchestration, sequential agent execution, sub-agent coordination, execution dependency enforcement, prerequisite validation control, user-triggered flow control, conditional agent invocation, workflow state management, process lifecycle management, failure isolation, downstream error prevention, execution gating, agent readiness verification, inter-agent communication control, global rule enforcement, process integrity enforcement, data integrity governance, compliance enforcement, auditability support, execution traceability, workflow transparency, status tracking, progress monitoring, execution confirmation handling, process halt on failure, safe recovery enforcement, modular agent architecture management, scalable workflow control, extensible agent framework support, system-wide validation checkpoints
+
+*   **SUBAGENT: Quality Check Agent**
+    *   Capabilities: file structure validation, primary sheet header validation, secondary sheet header validation, exact header matching enforcement, mandatory column verification, blank cell detection, missing value detection, incomplete row identification, row-level data validation, sheet-level validation, cross-sheet consistency checks, email metadata validation, format compliance checking, data completeness enforcement, early failure detection, workflow gatekeeping, process blocking on failure, error localization, clear error reporting, user-correctable feedback generation, validation result summarization, pass/fail decision signaling, downstream execution prevention, data readiness certification, input quality assurance, pre-processing risk elimination
+
+*   **SUBAGENT: Document Creation Agent**
+    *   Capabilities: validated data consumption, client-specific document generation, dynamic data population, template-driven document creation, multi-format document output, docx generation, pdf generation, client branding application, client formatting enforcement, open negotiation notice creation, group-level data consolidation, excel group file generation, xlsx file creation, document completeness verification, document consistency enforcement, multi-client document handling, batch document generation, execution blocking until completion, output readiness signaling, document success confirmation, file integrity assurance, structured output organization, reproducible document generation, user-triggered execution compliance
+
+*   **SUBAGENT: Email Sending Agent**
+    *   Capabilities: email metadata consumption, email subject handling, recipient mapping, cc handling, client-specific email composition, attachment association, document attachment validation, per-client email dispatch, individual email sending, email delivery execution, email success tracking, sent email downloading, email record preservation, email file storage, folder-based email organization, email count verification, communication traceability, email audit support, batch email processing, error isolation per email, completion confirmation signaling, post-send verification, controlled communication execution
+
+*   **SUBAGENT: File Rename Agent**
+    *   Capabilities: downloaded file identification, email file enumeration, standardized naming enforcement, file renaming automation, folder renaming automation, naming rule application, traceability enhancement, record standardization, post-processing execution, batch file handling, naming collision prevention, organizational compliance enforcement, structured archive creation, final output normalization, workflow finalization support, completion confirmation generation
+================================================================================
+================================================================================
+User (Session: mwjefbkbwqjk): i want to do open Negotiation 
+[ACTIVATED] Clarification (Vague Query Detection)
+Assistant: I can certainly help you with initiating the Open Negotiation process!
+
+To get started, I need a little more information about what you'd like to do. The Open Negotiation process involves several steps, from checking your documents to sending out emails and organizing the files.
+
+Are you looking to start the entire process from scratch, or do you have specific documents ready that you'd like to have checked first?
+
+For example, you could tell me:
+• Do you have the input files ready for quality checking?
+• Are you looking to generate the negotiation documents?
+• Would you like to proceed with sending out emails to clients?
+================================================================================
+================================================================================
+User (Session: asdhasca): what are the agent you have 
+[ACTIVATED] Clarification (Progressive)
+Assistant: I can help with the Open Negotiation workflow. Are you looking to manage the entire process from start to finish, or are you interested in a specific part of it, like document creation or email distribution?
+================================================================================
+================================================================================
+User (Session: asdhasca): i want to do document creation
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Document Creation Agent)
+Assistant: Should I route you to Document Creation Agent?
+================================================================================
+================================================================================
+User (Session: asdhasca): yes do that
+[ACTIVATED] Routing (Confirmed)
+[ROUTED TO] Open Negotiation AI Agent/Document Creation Agent
+Assistant: "I've got it - you'd like to create a document. I'm sending you over to our Document Creation Agent who will help you get that set up."
+================================================================================
