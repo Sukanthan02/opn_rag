@@ -1,5 +1,8 @@
-
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # =====================
 # DATABASE
@@ -14,43 +17,34 @@ MYSQL_CONFIG = {
 # =====================
 # QDRANT
 # =====================
-QDRANT_PATH = "./qdrant_data"
-QDRANT_COLLECTION = "agent_router"
+QDRANT_PATH = os.environ.get("QDRANT_PATH", "./qdrant_data")
+QDRANT_COLLECTION = os.environ.get("QDRANT_COLLECTION", "agent_router")
 
 # =====================
 # EMBEDDINGS
 # =====================
-EMBEDDING_MODEL = "nomic-ai/nomic-embed-text-v1"
-VECTOR_SIZE = 768
+EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "nomic-ai/nomic-embed-text-v1")
+VECTOR_SIZE = int(os.environ.get("VECTOR_SIZE", "768"))
 
 # =====================
 # GROK CLOUD API (Unified LLM Provider)
-# =====================a
+# =====================
 # Load from environment variable for security
 GROK_API_KEY = os.environ.get("GROK_API_KEY", "Grok API key")
-GROK_MODEL = "llama-3.3-70b-versatile"  # Recommended for best quality/speed balance
-# GROK_BASE_URL = "https://api.groq.com/openai/v1"
-
-# Alternative models available:
-# - llama-3.1-8b-instant (faster, less capable)
-# - groq/compound (Grok's proprietary model, if available)
-# - meta-llama/llama-4-maverick-17b-128e-instruct
-# - qwen/qwen3-32b
+GROK_MODEL = os.environ.get("GROK_MODEL", "llama-3.3-70b-versatile")
+# GROK_BASE_URL = os.environ.get("GROK_BASE_URL", "https://api.groq.com/openai/v1")
 
 # =====================
 # QUERY VALIDATION
 # =====================
 # Enable query validation before routing
-QUERY_VALIDATION_ENABLED = True
+QUERY_VALIDATION_ENABLED = os.environ.get("QUERY_VALIDATION_ENABLED", "True").lower() == "true"
 
 # Confidence threshold for query validation (0.0 to 1.0)
-# Queries below this threshold will trigger clarification or rejection
-QUERY_VALIDATION_CONFIDENCE_THRESHOLD = 0.7
+QUERY_VALIDATION_CONFIDENCE_THRESHOLD = float(os.environ.get("QUERY_VALIDATION_CONFIDENCE_THRESHOLD", "0.7"))
 
 # =====================
 # CONVERSATION MODE
 # =====================
-# If False: Direct routing and agent inquiry (current behavior)
-# If True: Intelligent conversation mode - handles vague queries, asks clarification, maintains context
-CONVERSATION_MODE = True
+CONVERSATION_MODE = os.environ.get("CONVERSATION_MODE", "True").lower() == "true"
 

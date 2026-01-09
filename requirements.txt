@@ -8,3 +8,5 @@ einops
 sentence-transformers
 sqlalchemy
 requests
+
+python-dotenv
