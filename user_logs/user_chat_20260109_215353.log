@@ -1,0 +1,15 @@
+================================================================================
+User (Session: test_verify_1768024434): I want to send an email
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: Should I route you to Email Sending Agent?
+================================================================================
+================================================================================
+User (Session: test_verify_1768024434): Yes
+[ACTIVATED] Routing Details Collection (Initiated)
+Assistant: Great! Before I route you, I need two more details: the Client Name and the Wave Number. Could you please provide these?
+================================================================================
+================================================================================
+User (Session: test_verify_1768024434): Client is Google, Wave 10
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: You're looking to send an email to Google as part of Wave 10, and the Email Sending Agent is the perfect fit for this task since it can compose and send emails with validated metadata and attachments. Shall I connect you to the Email Sending Agent to get this email on its way?
+================================================================================

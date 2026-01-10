@@ -1,0 +1,12 @@
+================================================================================
+User (Session: test_verify_1768024158): I want to send an email
+[ACTIVATED] Routing Confirmation (Proposed: Open Negotiation AI Agent/Email Sending Agent)
+Assistant: You're looking to send an email, and I've identified the Email Sending Agent as the best fit to take care of this for you. This agent will compose and send the email, and also keep a record of it for traceability. Shall I connect you to get the email sending process started?
+================================================================================
+================================================================================
+User (Session: test_verify_1768024158): Yes
+[ACTIVATED] Routing Details Collection (Initiated)
+Assistant: Great! Before I route you, I need two more details: the Client Name and the Wave Number. Could you please provide these?
+================================================================================
+================================================================================
+User (Session: test_verify_1768024158): Client is Google, Wave 10

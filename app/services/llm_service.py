@@ -368,23 +368,35 @@ Create a brief (1-2 sentences) natural message that:
 3. Is friendly and conversational
 4. Does NOT sound robotic
 
-EXAMPLES:
-- User query: "I need to send an email"
-  Target: Email Sending Agent
-  Message: "I understand you need to send an email. I'm routing you to the Email Sending Agent which specializes in email operations."
+IMPORTANT:
+- Output ONLY the final message.
+- Do NOT include any internal thought process, reasoning, or <think> blocks.
+- Do NOT include any introductory text or "Here is the message".
 
-- User query: "rename my files with standard naming"
-  Target: File Rename Agent
-  Message: "Great! I understand you want to rename files with standard naming conventions. Let me route you to the File Rename Agent."
-
-Generate the message (ONLY the message, no extra text):
+Generate the message:
 """
     
     try:
-        message = grok_call(prompt, max_tokens=256, temperature=0.3)
+        # Increased max_tokens slightly to ensure it can finish the thought and the message
+        # though we want it to be very brief.
+        message = grok_call(prompt, max_tokens=512, temperature=0.3)
         
-        # Clean up the response
-        message = message.strip()
+        # Clean up the response (strip reasoning blocks if present)
+        import re
+        # Handle both closed and unclosed <think> blocks
+        message = re.sub(r'<think>.*?(?:</think>|$)', '', message, flags=re.DOTALL).strip()
+        
+        # If the LLM still insists on a conversational preamble like "Message: "
+        if ":" in message and len(message.split(":")[0]) < 20:
+            potential_pains = ["Message", "Assistant", "Response", "Confirmation"]
+            for pain in potential_pains:
+                if message.startswith(f"{pain}:"):
+                    message = message.split(":", 1)[1].strip()
+                    break
+        
+        # Final trim for extra whitespace and quotes
+        message = message.strip('"').strip()
+        
         logger.info(f"Generated routing message: {message}")
         return message
     

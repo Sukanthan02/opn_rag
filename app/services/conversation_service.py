@@ -24,6 +24,8 @@ class ConversationSession:
         self.awaiting_confirmation = False  # Track if we just asked for confirmation
         self.pending_routing_agent = None
         self.pending_routing_subagent = None
+        self.client_name = None
+        self.wave_number = None
     
     def add_message(self, role: str, content: str):
         """Add a message to conversation history."""
@@ -89,14 +91,22 @@ INPUTS YOU RECEIVE:
 - matched_candidates from evaluate_user_response_for_routing
 
 YOUR GOAL:
-Help the user choose the correct agent or subagent with minimal friction.
+1. If exactly ONE agent/subagent is clear from history or candidates: Collect missing required parameters (client_name and wave_number).
+2. If NO agent is clear: Help the user choose the correct agent/subagent.
+
+REQUIRED PARAMETERS:
+- client_name: {session.client_name or 'MISSING'}
+- wave_number: {session.wave_number or 'MISSING'}
 
 RULES:
-- Be concise, friendly, and clear
-- Present the possible agents/subagents as options (derived from matched_candidates or conversation history)
-- Use natural language, not system terms
-- Ask the user to select ONE option
-- Do NOT expose internal reasoning or scoring
+- If either client_name or wave_number is MISSING and you have a clear agent target:
+  - ASK ONLY for the missing parameters. 
+  - DO NOT ask the user to choose an agent again.
+  - Example: "I've got the Document Creation Agent ready! I just need the client name and wave number to start."
+- If NO agent is clear:
+  - Provide a concise list of 2-3 matched_candidates and ask the user to choose.
+- Be concise, friendly, and natural.
+- Do NOT expose internal reasoning.
 
 Conversation History:
 {conversation_history}
@@ -106,12 +116,14 @@ Conversation History:
 OUTPUT FORMAT (PLAIN TEXT ONLY):
 
 Structure:
-1) One-line acknowledgement
-2) Short list of options (bullet points)
-3) Direct question asking the user to choose
+1) One-line acknowledgement.
+2) If parameters are missing: Ask for them specifically (e.g., "I just need the client name and wave number to proceed").
+3) If agent selection is needed: Short list of options (bullet points) and a direct question.
 
-EXAMPLE STYLE (DO NOT COPY VERBATIM):
+EXAMPLE STYLE (FOR MISSING PARAMETERS):
+"I understand you want to send an email! To get that started, could you please tell me the client name and the wave number?"
 
+EXAMPLE STYLE (FOR AGENT SELECTION):
 "I can help with this, but your request could fit a few areas. Please choose what you want to focus on:
 • Agent A – Subagent X: <short description>
 • Agent B – Subagent Y: <short description>
@@ -122,10 +134,17 @@ IMPORTANT:
 - Do NOT add extra explanations
 - Do NOT make assumptions
 - Ask only ONE clear clarifying question
+- Do NOT include any internal thought process, reasoning, or <think> blocks.
+- Output ONLY the final natural message.
 """
     
     try:
         response = grok_call(prompt, max_tokens=1024, temperature=0.3)
+        
+        # Strip thinking blocks
+        import re
+        response = re.sub(r'<think>.*?(?:</think>|$)', '', response, flags=re.DOTALL).strip()
+        
         response = response.strip()
         
         # Simple parsing since output is plain text
@@ -181,43 +200,63 @@ ANALYSIS RULES:
 - Prefer the most specific subagent over a general agent.
 - Ignore partial or weak matches unless they strongly affect intent.
 - If the query reasonably fits MORE THAN ONE agent or subagent, treat it as ambiguous.
+- **EXTRACTION REQUIREMENT**: You MUST attempt to extract a `client_name` and `wave_number` from the ENTIRE conversation history or the current query.
+- A `wave_number` is usually a number (e.g., "Wave 1", "2"). If you see "Wave X", extract "X" or "Wave X".
+- A `client_name` is the name of a person or company (e.g., "Google", "Client A").
+- If these were mentioned in previous turns, make sure to include them in your JSON response.
+- Do NOT ignore them if they are in the history.
 
-DECISION RULES:
-1) If exactly ONE clear agent + subagent match exists:
+DECISION RULES (FOLLOW THESE EXACTLY):
+
+1) If exactly ONE clear agent + subagent match exists AND both `client_name` and `wave_number` are known (either from this query or the history):
    - route = true
-2) If multiple agents or subagents are valid:
-   - route = false
-3) If intent is unclear or incomplete:
-   - route = false
+   - confidence = 0.8 to 1.0
 
-OUTPUT FORMAT (STRICT JSON):
+2) If ANY mandatory parameter (`client_name` or `wave_number`) is missing:
+   - route = false
+   - Explain in `reasoning` exactly which parameters are missing.
+   - You MUST return route = false even if the agent match is 100% certain.
+
+3) If multiple agents or subagents are valid, OR the intent is unclear:
+   - route = false
+   - List the candidates in `matched_candidates`.
+
+OUTPUT FORMAT (STRICT JSON ONLY - NO CONVERSATIONAL TEXT):
 
 If route = true:
 {{
   "route": true,
   "agent": "<agent_name>",
   "subagent": "<subagent_name or null>",
+  "client_name": "<extracted_client_name>",
+  "wave_number": "<extracted_wave_number>",
   "confidence": <number between 0 and 1>,
-  "reasoning": "Concise explanation of why this agent/subagent is the best match"
+  "reasoning": "Concise explanation"
 }}
 
 If route = false:
 {{
   "route": false,
+  "client_name": "<extracted_client_name or null>",
+  "wave_number": "<extracted_wave_number or null>",
   "matched_candidates": [
     {{
       "agent": "<agent_name>",
       "subagent": "<subagent_name or null>",
-      "reasoning": "Why this candidate could match"
+      "reasoning": "Why this candidate"
     }}
   ],
-  "reasoning": "Why a single confident routing decision cannot be made"
+  "reasoning": "concise explanation"
 }}
 
 IMPORTANT:
-- Do NOT ask questions in this mode
-- Do NOT suggest next steps
-- Only evaluate and return the decision
+- Return ONLY valid JSON.
+- Do NOT include any introductory text, analysis, or explanation outside the JSON.
+- Do NOT ask questions.
+- Do NOT suggest next steps.
+- Only evaluate and return the decision.
+
+Analyze the query and return ONLY the JSON:
 """
     
     response = grok_call(prompt, max_tokens=1024, temperature=0.0)
@@ -227,13 +266,21 @@ IMPORTANT:
     if response.startswith("```"):
         response = response.replace("```json", "").replace("```", "").strip()
     
+    # Attempt to extract JSON if LLM included extra text
+    if not (response.startswith("{") and response.endswith("}")):
+        import re
+        json_match = re.search(r'\{.*\}', response, re.DOTALL)
+        if json_match:
+            response = json_match.group(0)
+    
     try:
         result = json.loads(response)
         return result
     
     except json.JSONDecodeError:
         logger.warning(f"Invalid JSON from routing evaluation: {response}")
-        return {"route": False, "matched_candidates": [], "reasoning": "JSON decode error"}
+        # Return raw response as part of reasoning for debugging in verification results
+        return {"route": False, "matched_candidates": [], "reasoning": f"JSON decode error: {response[:200]}"}
 
 
 def _format_agents_with_categories(agents: list) -> str:
@@ -547,6 +594,11 @@ Create a natural, conversational confirmation message that:
 3. Briefly explains why this is the right choice
 4. Asks for confirmation in a NATURAL WAY (NOT always "Does that sound correct?")
 
+IMPORTANT:
+- Output ONLY the final message inside the JSON field.
+- Do NOT include any internal thought process, reasoning, or <think> blocks in the response.
+- Keep the message to 1-2 sentences.
+
 CRITICAL - VARY THE CONFIRMATION ENDINGS:
 DO NOT use template endings like "Does that sound correct?" every time.
 Instead, use dynamic endings based on the context, such as:
@@ -582,7 +634,10 @@ Generate a UNIQUE confirmation message with a NATURAL, VARIED ending:
         conversation_logger.debug(f"[SESSION {session.session_id}] Using Grok to generate confirmation")
         response = grok_call(prompt, max_tokens=1024, temperature=0.3)
         
-        response = response.strip()
+        # Strip thinking blocks
+        import re
+        response = re.sub(r'<think>.*?(?:</think>|$)', '', response, flags=re.DOTALL).strip()
+        
         if response.startswith("```"):
             response = response.replace("```json", "").replace("```", "").strip()
         

@@ -1,0 +1,656 @@
+<All keys matched successfully>
+2026-01-09 21:53:53 | RAG_AGENT_ROUTER | INFO | ================================================================================
+2026-01-09 21:53:53 | RAG_AGENT_ROUTER | INFO | RAG AGENT ROUTER SYSTEM STARTED
+2026-01-09 21:53:53 | RAG_AGENT_ROUTER | INFO | ================================================================================
+2026-01-09 21:53:53 | RAG_AGENT_ROUTER | DEBUG | Log file: logs\rag_agent_router_20260109_215353.log
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | ================================================================================
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [NEW REQUEST] Session: test_verify_1768024434
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [USER QUERY] I want to send an email
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIG] CONVERSATION_MODE: True
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIG] QUERY_VALIDATION_ENABLED: True
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION test_verify_1768024434] CREATED - New conversation session
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 0] Query validation enabled - validating query...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER | INFO | Retrieved 1 agents with subagents
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER | INFO | [QUERY VALIDATOR] Validating query: I want to send an email...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 256, Temperature: 0.0
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 8678 chars
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are a query validation system. Your job is to analyze if a user query is relevant and meaningful for our agent routing application.
+
+User Query: "I want to send an email"
+
+Available Agents and Their Capabilities:
+MAIN AGENT: Open Negotiation AI Agent
+  Description: The Open Negotiation AI Agent is the master orchestration and control agent responsible for managing the complete Open Negotiation workflow end-to-end. It enforces strict execution order, validates prerequisites, coordinates speci...
+2026-01-09 21:53:54 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-97304004-9feb-4fa8-a42d-4b28e0c66c02', 'json_data': {'messages': [{'role': 'user', 'content': 'You are a query validation system. Your job is to analyze if a user query is relevant and meaningful for our agent routing application.\n\nUser Query: "I want to send an email"\n\nAvailable Agents and Their Capabilities:\nMAIN AGENT: Open Negotiation AI Agent\n  Description: The Open Negotiation AI Agent is the master orchestration and control agent responsible for managing the complete Open Negotiation workflow end-to-end. It enforces strict execution order, validates prerequisites, coordinates specialized sub-agents, handles user-triggered execution, prevents downstream failures, and guarantees data accuracy, compliance, and operational integrity. This agent does not perform business tasks itself but acts as a centralized controller, decision-maker, and workflow governor for all subordinate agents.\n  Capabilities: master workflow orchestration | sequential agent execution | sub-agent coordination | execution dependency enforcement | prerequisite validation control | user-triggered flow control | conditional agent invocation | workflow state management | process lifecycle management | failure isolation | downstream error prevention | execution gating | agent readiness verification | inter-agent communication control | global rule enforcement | process integrity enforcement | data integrity governance | compliance enforcement | auditability support | execution traceability | workflow transparency | status tracking | progress monitoring | execution confirmation handling | process halt on failure | safe recovery enforcement | modular agent architecture management | scalable workflow control | extensible agent framework support | system-wide validation checkpoints\n  SUBAGENT: Quality Check Agent\n    Description: The Quality Check Agent acts as the mandatory gatekeeper for the Open Negotiation workflow. It validates the structural integrity, completeness, and correctness of all input files before any downstream processing is allowed. This agent ensures that required headers exist, mandatory fields are populated, data formats are correct, and no incomplete or invalid rows are present. Any failure immediately halts the workflow and returns actionable error feedback to the user.\n    Capabilities: file structure validation | primary sheet header validation | secondary sheet header validation | exact header matching enforcement | mandatory column verification | blank cell detection | missing value detection | incomplete row identification | row-level data validation | sheet-level validation | cross-sheet consistency checks | email metadata validation | format compliance checking | data completeness enforcement | early failure detection | workflow gatekeeping | process blocking on failure | error localization | clear error reporting | user-correctable feedback generation | validation result summarization | pass/fail decision signaling | downstream execution prevention | data readiness certification | input quality assurance | pre-processing risk elimination\n  SUBAGENT: Document Creation Agent\n    Description: The Document Creation Agent is responsible for generating all Open Negotiation documents using validated input data. It dynamically populates client-specific templates, applies branding rules, and produces standardized output files. This agent runs only after successful quality validation and explicit user approval, and it must complete all document generation tasks before any email activity can occur.\n    Capabilities: validated data consumption | client-specific document generation | dynamic data population | template-driven document creation | multi-format document output | docx generation | pdf generation | client branding application | client formatting enforcement | open negotiation notice creation | group-level data consolidation | excel group file generation | xlsx file creation | document completeness verification | document consistency enforcement | multi-client document handling | batch document generation | execution blocking until completion | output readiness signaling | document success confirmation | file integrity assurance | structured output organization | reproducible document generation | user-triggered execution compliance\n  SUBAGENT: Email Sending Agent\n    Description: The Email Sending Agent automates the controlled distribution of Open Negotiation emails to clients. It composes emails using validated metadata, attaches the correct documents, sends emails individually per client, downloads sent email records, and stores them systematically. This agent ensures accurate communication, traceability, and record retention for every sent email.\n    Capabilities: email metadata consumption | email subject handling | recipient mapping | cc handling | client-specific email composition | attachment association | document attachment validation | per-client email dispatch | individual email sending | email delivery execution | email success tracking | sent email downloading | email record preservation | email file storage | folder-based email organization | email count verification | communication traceability | email audit support | batch email processing | error isolation per email | completion confirmation signaling | post-send verification | controlled communication execution\n  SUBAGENT: File Rename Agent\n    Description: The File Rename Agent standardizes naming conventions for all Open Negotiation email files and folders. It applies predefined, structured naming rules to ensure consistency, traceability, and compliance with organizational standards. This agent runs only after all emails have been successfully sent and downloaded.\n    Capabilities: downloaded file identification | email file enumeration | standardized naming enforcement | file renaming automation | folder renaming automation | naming rule application | traceability enhancement | record standardization | post-processing execution | batch file handling | naming collision prevention | organizational compliance enforcement | structured archive creation | final output normalization | workflow finalization support | completion confirmation generation\n\n\nVALIDATION CRITERIA:\n1. **Relevance**: Does the query relate to any of the available agents or their capabilities?\n2. **Clarity**: Is the query understandable and actionable?\n3. **Intent**: Does the user have a clear task or goal?\n4. **Meaningfulness**: Is the query meaningful (not gibberish, spam, or completely random)?\n\nSCORING GUIDE:\n- **0.9-1.0**: Perfect query - clear, relevant, actionable\n- **0.7-0.89**: Good query - relevant but may need minor clarification\n- **0.5-0.69**: Borderline - vague or unclear, needs clarification\n- **0.3-0.49**: Poor query - barely relevant or very unclear\n- **0.0-0.29**: Invalid query - gibberish, spam, or completely unrelated\n\nSUGGESTED ACTIONS:\n- **proceed**: Query is clear and relevant (confidence >= 0.7)\n- **clarify**: Query is potentially valid but needs clarification (confidence 0.5-0.69)\n- **reject**: Query is invalid or irrelevant (confidence < 0.5)\n\nEXAMPLES:\n\nExample 1 - Valid Query:\nQuery: "I need to send an email to my team"\nAnalysis: Clear intent, relates to email agent\nResponse: {"is_valid": true, "confidence": 0.95, "reason": "Clear request for email sending functionality", "suggested_action": "proceed"}\n\nExample 2 - Vague Query:\nQuery: "help me"\nAnalysis: Too vague, no clear intent\nResponse: {"is_valid": true, "confidence": 0.55, "reason": "Query is too vague - needs clarification on what help is needed", "suggested_action": "clarify"}\n\nExample 3 - Invalid Query:\nQuery: "asdfghjkl random stuff"\nAnalysis: Gibberish, no meaning\nResponse: {"is_valid": false, "confidence": 0.15, "reason": "Query appears to be random text without clear meaning or intent", "suggested_action": "reject"}\n\nExample 4 - Unrelated Query:\nQuery: "What\'s the weather today?"\nAnalysis: Not related to any available agents\nResponse: {"is_valid": false, "confidence": 0.25, "reason": "Query is unrelated to available agent capabilities (document creation, email, file management, etc.)", "suggested_action": "reject"}\n\nExample 5 - Borderline Query:\nQuery: "I want to do something with files"\nAnalysis: Relevant but unclear\nResponse: {"is_valid": true, "confidence": 0.60, "reason": "Query relates to file operations but lacks specificity - needs clarification on what file operation", "suggested_action": "clarify"}\n\nNow analyze the user query and return ONLY a valid JSON response (no markdown, no code fence, no extra text):\n{\n  "is_valid": <true or false>,\n  "confidence": <0.0 to 1.0>,\n  "reason": "<brief explanation>",\n  "suggested_action": "<proceed, clarify, or reject>"\n}\n\nJSON Response:\n'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 256, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:54 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:54 | httpcore.connection | DEBUG | connect_tcp.started host='api.groq.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-09 21:53:54 | httpcore.connection | DEBUG | connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001D3291E5D90>
+2026-01-09 21:53:54 | httpcore.connection | DEBUG | start_tls.started ssl_context=<ssl.SSLContext object at 0x000001D3290EB4A0> server_hostname='api.groq.com' timeout=5.0
+2026-01-09 21:53:54 | httpcore.connection | DEBUG | start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001D32930B910>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:57 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'965'), (b'x-ratelimit-remaining-tokens', b'10323'), (b'x-ratelimit-reset-requests', b'50m24s'), (b'x-ratelimit-reset-tokens', b'8.385s'), (b'x-request-id', b'req_01kek7fwa0e68856wwc6mpmswt'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=fiL7OKO_7PIZqTPYzCJyDWkpKFW8RI3ZjE70k9Hp98I-1768024437-1.0.1.1-u9_iNSyK6WuLidS0XHo4XmIe446JqMLekGU58c1P5j6iec0h1UUaS8vet4NweewYJKIzP7pk3cBtl9VyFJFPo2Iu9u0N9ps21dYp9bJHBBU; path=/; expires=Sat, 10-Jan-26 06:23:57 GMT; domain=.groq.com; HttpOnly; Secure; SameSite=None'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eabb4ee77f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:54 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:54 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:57 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '965', 'x-ratelimit-remaining-tokens': '10323', 'x-ratelimit-reset-requests': '50m24s', 'x-ratelimit-reset-tokens': '8.385s', 'x-request-id': 'req_01kek7fwa0e68856wwc6mpmswt', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=fiL7OKO_7PIZqTPYzCJyDWkpKFW8RI3ZjE70k9Hp98I-1768024437-1.0.1.1-u9_iNSyK6WuLidS0XHo4XmIe446JqMLekGU58c1P5j6iec0h1UUaS8vet4NweewYJKIzP7pk3cBtl9VyFJFPo2Iu9u0N9ps21dYp9bJHBBU; path=/; expires=Sat, 10-Jan-26 06:23:57 GMT; domain=.groq.com; HttpOnly; Secure; SameSite=None', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eabb4ee77f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.57s
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 174 chars
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+{
+  "is_valid": true,
+  "confidence": 0.85,
+  "reason": "Query relates to email functionality, which is handled by the Email Sending Agent",
+  "suggested_action": "proceed"
+}
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER | DEBUG | [QUERY VALIDATOR] Grok call completed in 0.57s
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER | INFO | [QUERY VALIDATOR] Result: valid=True, confidence=0.85, action=proceed
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [VALIDATION] is_valid=True, confidence=0.85, action=proceed
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 1] Checking for agent inquiry...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 5, Temperature: 0.0
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 1511 chars
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent's service.
+
+User Query: "I want to send an email"
+
+CLASSIFICATION RULES:
+
+=== Answer "YES" (Agent Information Inquiry) ONLY if ===
+- User asks WHAT agents exist or are available
+- User asks WHAT agent can do / capabilities
+- User asks ABOUT agent features without wanting to use it yet
+- Examples: "list agents", "what agents do you have?", "can document agent crea...
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\logging\__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 1385: character maps to <undefined>
+Call stack:
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 44, in <module>
+    test_full_routing_flow()
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 19, in test_full_routing_flow
+    resp1 = chat("I want to send an email", session_id)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\api\chat.py", line 133, in chat
+    if is_agent_inquiry(query):
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\agent_inquiry_service.py", line 47, in is_agent_inquiry
+    response = grok_call(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\llm_service.py", line 190, in grok_call
+    response = _grok_client.chat.completions.create(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 966, in request
+    request = self._build_request(options, retries_taken=retries_taken)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 480, in _build_request
+    log.debug("Request options: %s", model_dump(options, exclude_unset=True))
+Message: 'Request options: %s'
+Arguments: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-4865559c-b872-4b7b-ba23-57fe780792db', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent\'s service.\n\nUser Query: "I want to send an email"\n\nCLASSIFICATION RULES:\n\n=== Answer "YES" (Agent Information Inquiry) ONLY if ===\n- User asks WHAT agents exist or are available\n- User asks WHAT agent can do / capabilities\n- User asks ABOUT agent features without wanting to use it yet\n- Examples: "list agents", "what agents do you have?", "can document agent create ppt?", "does email agent handle gmail?"\n\n=== Answer "NO" (Service Request / Routing) ONLY if ===\n- User wants to USE / ACCESS an agent ("i want to use email agent", "send me to agent X")\n- User asks to ROUTE / REDIRECT to an agent ("route to email agent", "take me to document agent")\n- User is REQUESTING a service (even if it mentions an agent name)\n- User is ASKING FOR ACTION, not asking about capability\n- Examples: "I want to send emails", "use email agent", "route to email", "take me to document agent"\n\nKEY DISTINCTION - These are DIFFERENT:\n- "can email agent send emails?" \u2192 YES (asking about capability)\n- "I want to send emails" \u2192 NO (asking to use service)\n- "does document agent create ppt?" \u2192 YES (asking about capability)  \n- "create a ppt for me" \u2192 NO (asking for service)\n- "what is email agent?" \u2192 YES (asking about agent)\n- "I want to use email agent" \u2192 NO (asking to access/use)\n- "route to email agent" \u2192 NO (asking for routing)\n\nRespond with ONLY "yes" or "no" - nothing else:\nAnswer:'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 5, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:54 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-4865559c-b872-4b7b-ba23-57fe780792db', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent\'s service.\n\nUser Query: "I want to send an email"\n\nCLASSIFICATION RULES:\n\n=== Answer "YES" (Agent Information Inquiry) ONLY if ===\n- User asks WHAT agents exist or are available\n- User asks WHAT agent can do / capabilities\n- User asks ABOUT agent features without wanting to use it yet\n- Examples: "list agents", "what agents do you have?", "can document agent create ppt?", "does email agent handle gmail?"\n\n=== Answer "NO" (Service Request / Routing) ONLY if ===\n- User wants to USE / ACCESS an agent ("i want to use email agent", "send me to agent X")\n- User asks to ROUTE / REDIRECT to an agent ("route to email agent", "take me to document agent")\n- User is REQUESTING a service (even if it mentions an agent name)\n- User is ASKING FOR ACTION, not asking about capability\n- Examples: "I want to send emails", "use email agent", "route to email", "take me to document agent"\n\nKEY DISTINCTION - These are DIFFERENT:\n- "can email agent send emails?" \u2192 YES (asking about capability)\n- "I want to send emails" \u2192 NO (asking to use service)\n- "does document agent create ppt?" \u2192 YES (asking about capability)  \n- "create a ppt for me" \u2192 NO (asking for service)\n- "what is email agent?" \u2192 YES (asking about agent)\n- "I want to use email agent" \u2192 NO (asking to access/use)\n- "route to email agent" \u2192 NO (asking for routing)\n\nRespond with ONLY "yes" or "no" - nothing else:\nAnswer:'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 5, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:54 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:57 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'964'), (b'x-ratelimit-remaining-tokens', b'9950'), (b'x-ratelimit-reset-requests', b'51m50.399s'), (b'x-ratelimit-reset-tokens', b'10.25s'), (b'x-request-id', b'req_01kek7fwqpe68rbghr9ks9rbke'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eabe091b7f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:54 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:54 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:57 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '964', 'x-ratelimit-remaining-tokens': '9950', 'x-ratelimit-reset-requests': '51m50.399s', 'x-ratelimit-reset-tokens': '10.25s', 'x-request-id': 'req_01kek7fwqpe68rbghr9ks9rbke', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eabe091b7f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.19s
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 2 chars
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+no
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\logging\__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 98: character maps to <undefined>
+Call stack:
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 44, in <module>
+    test_full_routing_flow()
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 19, in test_full_routing_flow
+    resp1 = chat("I want to send an email", session_id)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\api\chat.py", line 133, in chat
+    if is_agent_inquiry(query):
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\agent_inquiry_service.py", line 53, in is_agent_inquiry
+    logger.debug(f"[AGENT INQUIRY] Query: '{query}' \u2192 Result: {result}")
+Message: "[AGENT INQUIRY] Query: 'I want to send an email' \u2192 Result: no"
+Arguments: ()
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER | DEBUG | [AGENT INQUIRY] Query: 'I want to send an email' \u2192 Result: no
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [RESULT] Not an agent inquiry, proceeding to routing...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [MODE] CONVERSATION_MODE = True
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] USER: I want to send an email
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] ID: test_verify_1768024434
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] Clarifications asked so far: 0
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] Total messages in history: 1
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 3] Evaluating routing readiness...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 1024, Temperature: 0.0
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 7579 chars
+2026-01-09 21:53:54 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are an intelligent routing and clarification engine.
+
+MODE 1: evaluate_user_response_for_routing
+--------------------------------------------------
+
+INPUTS YOU RECEIVE:
+- User query
+- List of agents
+
+YOUR GOAL:
+Determine whether the user query clearly maps to exactly ONE agent and ONE subagent.
+
+Conversation History:
+User: I want to send an email
+
+Available Agents and Subagents:
+[AGENT] Name: Open Negotiation AI Agent
+  Description: The Open Negotiation AI Agent is the master orchestration a...
+2026-01-09 21:53:54 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-41047ef0-5cda-44cc-aa18-c8ac6794294b', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an intelligent routing and clarification engine.\n\nMODE 1: evaluate_user_response_for_routing\n--------------------------------------------------\n\nINPUTS YOU RECEIVE:\n- User query\n- List of agents\n\nYOUR GOAL:\nDetermine whether the user query clearly maps to exactly ONE agent and ONE subagent.\n\nConversation History:\nUser: I want to send an email\n\nAvailable Agents and Subagents:\n[AGENT] Name: Open Negotiation AI Agent\n  Description: The Open Negotiation AI Agent is the master orchestration and control agent responsible for managing the complete Open Negotiation workflow end-to-end. It enforces strict execution order, validates prerequisites, coordinates specialized sub-agents, handles user-triggered execution, prevents downstream failures, and guarantees data accuracy, compliance, and operational integrity. This agent does not perform business tasks itself but acts as a centralized controller, decision-maker, and workflow governor for all subordinate agents.\n  Capabilities: master workflow orchestration | sequential agent execution | sub-agent coordination | execution dependency enforcement | prerequisite validation control | user-triggered flow control | conditional agent invocation | workflow state management | process lifecycle management | failure isolation | downstream error prevention | execution gating | agent readiness verification | inter-agent communication control | global rule enforcement | process integrity enforcement | data integrity governance | compliance enforcement | auditability support | execution traceability | workflow transparency | status tracking | progress monitoring | execution confirmation handling | process halt on failure | safe recovery enforcement | modular agent architecture management | scalable workflow control | extensible agent framework support | system-wide validation checkpoints\n  Subagents under Open Negotiation AI Agent:\n    [SUBAGENT] Name: Quality Check Agent\n      Description: The Quality Check Agent acts as the mandatory gatekeeper for the Open Negotiation workflow. It validates the structural integrity, completeness, and correctness of all input files before any downstream processing is allowed. This agent ensures that required headers exist, mandatory fields are populated, data formats are correct, and no incomplete or invalid rows are present. Any failure immediately halts the workflow and returns actionable error feedback to the user.\n      Capabilities: file structure validation | primary sheet header validation | secondary sheet header validation | exact header matching enforcement | mandatory column verification | blank cell detection | missing value detection | incomplete row identification | row-level data validation | sheet-level validation | cross-sheet consistency checks | email metadata validation | format compliance checking | data completeness enforcement | early failure detection | workflow gatekeeping | process blocking on failure | error localization | clear error reporting | user-correctable feedback generation | validation result summarization | pass/fail decision signaling | downstream execution prevention | data readiness certification | input quality assurance | pre-processing risk elimination\n    [SUBAGENT] Name: Document Creation Agent\n      Description: The Document Creation Agent is responsible for generating all Open Negotiation documents using validated input data. It dynamically populates client-specific templates, applies branding rules, and produces standardized output files. This agent runs only after successful quality validation and explicit user approval, and it must complete all document generation tasks before any email activity can occur.\n      Capabilities: validated data consumption | client-specific document generation | dynamic data population | template-driven document creation | multi-format document output | docx generation | pdf generation | client branding application | client formatting enforcement | open negotiation notice creation | group-level data consolidation | excel group file generation | xlsx file creation | document completeness verification | document consistency enforcement | multi-client document handling | batch document generation | execution blocking until completion | output readiness signaling | document success confirmation | file integrity assurance | structured output organization | reproducible document generation | user-triggered execution compliance\n    [SUBAGENT] Name: Email Sending Agent\n      Description: The Email Sending Agent automates the controlled distribution of Open Negotiation emails to clients. It composes emails using validated metadata, attaches the correct documents, sends emails individually per client, downloads sent email records, and stores them systematically. This agent ensures accurate communication, traceability, and record retention for every sent email.\n      Capabilities: email metadata consumption | email subject handling | recipient mapping | cc handling | client-specific email composition | attachment association | document attachment validation | per-client email dispatch | individual email sending | email delivery execution | email success tracking | sent email downloading | email record preservation | email file storage | folder-based email organization | email count verification | communication traceability | email audit support | batch email processing | error isolation per email | completion confirmation signaling | post-send verification | controlled communication execution\n    [SUBAGENT] Name: File Rename Agent\n      Description: The File Rename Agent standardizes naming conventions for all Open Negotiation email files and folders. It applies predefined, structured naming rules to ensure consistency, traceability, and compliance with organizational standards. This agent runs only after all emails have been successfully sent and downloaded.\n      Capabilities: downloaded file identification | email file enumeration | standardized naming enforcement | file renaming automation | folder renaming automation | naming rule application | traceability enhancement | record standardization | post-processing execution | batch file handling | naming collision prevention | organizational compliance enforcement | structured archive creation | final output normalization | workflow finalization support | completion confirmation generation\n\n\nANALYSIS RULES:\n- Compare semantic meaning, intent, and task type — not just keywords.\n- Prefer the most specific subagent over a general agent.\n- Ignore partial or weak matches unless they strongly affect intent.\n- If the query reasonably fits MORE THAN ONE agent or subagent, treat it as ambiguous.\n\nDECISION RULES:\n1) If exactly ONE clear agent + subagent match exists:\n   - route = true\n2) If multiple agents or subagents are valid:\n   - route = false\n3) If intent is unclear or incomplete:\n   - route = false\n\nOUTPUT FORMAT (STRICT JSON):\n\nIf route = true:\n{\n  "route": true,\n  "agent": "<agent_name>",\n  "subagent": "<subagent_name or null>",\n  "confidence": <number between 0 and 1>,\n  "reasoning": "Concise explanation of why this agent/subagent is the best match"\n}\n\nIf route = false:\n{\n  "route": false,\n  "matched_candidates": [\n    {\n      "agent": "<agent_name>",\n      "subagent": "<subagent_name or null>",\n      "reasoning": "Why this candidate could match"\n    }\n  ],\n  "reasoning": "Why a single confident routing decision cannot be made"\n}\n\nIMPORTANT:\n- Do NOT ask questions in this mode\n- Do NOT suggest next steps\n- Only evaluate and return the decision\n'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 1024, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:54 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:54 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:58 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'963'), (b'x-ratelimit-remaining-tokens', b'8620'), (b'x-ratelimit-reset-requests', b'53m16.799s'), (b'x-ratelimit-reset-tokens', b'16.9s'), (b'x-request-id', b'req_01kek7fww5fhetthv29w08pkx8'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eabef9dd7f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:55 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:55 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:58 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '963', 'x-ratelimit-remaining-tokens': '8620', 'x-ratelimit-reset-requests': '53m16.799s', 'x-ratelimit-reset-tokens': '16.9s', 'x-request-id': 'req_01kek7fww5fhetthv29w08pkx8', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eabef9dd7f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.43s
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 377 chars
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+```json
+{
+  "route": true,
+  "agent": "Open Negotiation AI Agent",
+  "subagent": "Email Sending Agent",
+  "confidence": 0.9,
+  "reasoning": "The user query 'I want to send an email' clearly maps to the Email Sending Agent subagent under the Open Negotiation AI Agent, as it is responsible for automating the controlled distribution of Open Negotiation emails to clients."
+}
+```
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [ROUTING DECISION] Agent: Open Negotiation AI Agent, Confidence: 90.00%
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [READY TO ROUTE] Yes | Confidence: 90.00%
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [CONFIRMATION CHECK] awaiting_confirmation=False, query='I want to send an email'
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [CONFIRMATION CHECK] Not awaiting confirmation, returning False
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 4] Asking for confirmation before routing...
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION test_verify_1768024434] CONFIRMATION STAGE - Asking user to confirm routing to Open Negotiation AI Agent/Email Sending Agent
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] Using Grok to generate confirmation
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 1024, Temperature: 0.3
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 7647 chars
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are a helpful assistant confirming a user's agent routing decision.
+
+Conversation History:
+User: I want to send an email
+
+Proposed Routing:
+- Agent: Open Negotiation AI Agent
+- Subagent: Email Sending Agent
+
+Available Agents and Subagents:
+[AGENT] Name: Open Negotiation AI Agent
+  Description: The Open Negotiation AI Agent is the master orchestration and control agent responsible for managing the complete Open Negotiation workflow end-to-end. It enforces strict execution order, validates pre...
+2026-01-09 21:53:55 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-73b7e001-a651-4ac1-89de-57971eebc2af', 'json_data': {'messages': [{'role': 'user', 'content': 'You are a helpful assistant confirming a user\'s agent routing decision.\n\nConversation History:\nUser: I want to send an email\n\nProposed Routing:\n- Agent: Open Negotiation AI Agent\n- Subagent: Email Sending Agent\n\nAvailable Agents and Subagents:\n[AGENT] Name: Open Negotiation AI Agent\n  Description: The Open Negotiation AI Agent is the master orchestration and control agent responsible for managing the complete Open Negotiation workflow end-to-end. It enforces strict execution order, validates prerequisites, coordinates specialized sub-agents, handles user-triggered execution, prevents downstream failures, and guarantees data accuracy, compliance, and operational integrity. This agent does not perform business tasks itself but acts as a centralized controller, decision-maker, and workflow governor for all subordinate agents.\n  Capabilities: master workflow orchestration | sequential agent execution | sub-agent coordination | execution dependency enforcement | prerequisite validation control | user-triggered flow control | conditional agent invocation | workflow state management | process lifecycle management | failure isolation | downstream error prevention | execution gating | agent readiness verification | inter-agent communication control | global rule enforcement | process integrity enforcement | data integrity governance | compliance enforcement | auditability support | execution traceability | workflow transparency | status tracking | progress monitoring | execution confirmation handling | process halt on failure | safe recovery enforcement | modular agent architecture management | scalable workflow control | extensible agent framework support | system-wide validation checkpoints\n  Subagents under Open Negotiation AI Agent:\n    [SUBAGENT] Name: Quality Check Agent\n      Description: The Quality Check Agent acts as the mandatory gatekeeper for the Open Negotiation workflow. It validates the structural integrity, completeness, and correctness of all input files before any downstream processing is allowed. This agent ensures that required headers exist, mandatory fields are populated, data formats are correct, and no incomplete or invalid rows are present. Any failure immediately halts the workflow and returns actionable error feedback to the user.\n      Capabilities: file structure validation | primary sheet header validation | secondary sheet header validation | exact header matching enforcement | mandatory column verification | blank cell detection | missing value detection | incomplete row identification | row-level data validation | sheet-level validation | cross-sheet consistency checks | email metadata validation | format compliance checking | data completeness enforcement | early failure detection | workflow gatekeeping | process blocking on failure | error localization | clear error reporting | user-correctable feedback generation | validation result summarization | pass/fail decision signaling | downstream execution prevention | data readiness certification | input quality assurance | pre-processing risk elimination\n    [SUBAGENT] Name: Document Creation Agent\n      Description: The Document Creation Agent is responsible for generating all Open Negotiation documents using validated input data. It dynamically populates client-specific templates, applies branding rules, and produces standardized output files. This agent runs only after successful quality validation and explicit user approval, and it must complete all document generation tasks before any email activity can occur.\n      Capabilities: validated data consumption | client-specific document generation | dynamic data population | template-driven document creation | multi-format document output | docx generation | pdf generation | client branding application | client formatting enforcement | open negotiation notice creation | group-level data consolidation | excel group file generation | xlsx file creation | document completeness verification | document consistency enforcement | multi-client document handling | batch document generation | execution blocking until completion | output readiness signaling | document success confirmation | file integrity assurance | structured output organization | reproducible document generation | user-triggered execution compliance\n    [SUBAGENT] Name: Email Sending Agent\n      Description: The Email Sending Agent automates the controlled distribution of Open Negotiation emails to clients. It composes emails using validated metadata, attaches the correct documents, sends emails individually per client, downloads sent email records, and stores them systematically. This agent ensures accurate communication, traceability, and record retention for every sent email.\n      Capabilities: email metadata consumption | email subject handling | recipient mapping | cc handling | client-specific email composition | attachment association | document attachment validation | per-client email dispatch | individual email sending | email delivery execution | email success tracking | sent email downloading | email record preservation | email file storage | folder-based email organization | email count verification | communication traceability | email audit support | batch email processing | error isolation per email | completion confirmation signaling | post-send verification | controlled communication execution\n    [SUBAGENT] Name: File Rename Agent\n      Description: The File Rename Agent standardizes naming conventions for all Open Negotiation email files and folders. It applies predefined, structured naming rules to ensure consistency, traceability, and compliance with organizational standards. This agent runs only after all emails have been successfully sent and downloaded.\n      Capabilities: downloaded file identification | email file enumeration | standardized naming enforcement | file renaming automation | folder renaming automation | naming rule application | traceability enhancement | record standardization | post-processing execution | batch file handling | naming collision prevention | organizational compliance enforcement | structured archive creation | final output normalization | workflow finalization support | completion confirmation generation\n\n\nDYNAMIC CONFIRMATION TASK:\nCreate a natural, conversational confirmation message that:\n1. Reflects back what the user wants to do (show you understood)\n2. Names the agent/subagent that will handle it\n3. Briefly explains why this is the right choice\n4. Asks for confirmation in a NATURAL WAY (NOT always "Does that sound correct?")\n\nCRITICAL - VARY THE CONFIRMATION ENDINGS:\nDO NOT use template endings like "Does that sound correct?" every time.\nInstead, use dynamic endings based on the context, such as:\n- "Ready to get started?"\n- "Should we move forward with this?"\n- "Want me to route you there?"\n- "Let\'s do it?"\n- "Shall I connect you?"\n- "That work for you?"\n- "Sound good?"\n- "Alright with that plan?"\n- Use natural language that matches the user\'s tone and the task type\n\nGUIDANCE:\n- For urgent/important tasks: More direct ("Ready to proceed?")\n- For exploratory tasks: More casual ("Want to give it a try?")\n- For routine tasks: More straightforward ("Should we move forward?")\n- Match the personality/energy of the task\n\nKeep it concise and natural. Avoid excessive formatting.\n\nResponse Format (JSON):\n{\n  "summary": "What user wants to do - in their voice/context",\n  "agent_description": "What this agent does",\n  "confirmation_message": "Full natural message with varied ending - NOT templated"\n}\n\nGenerate a UNIQUE confirmation message with a NATURAL, VARIED ending:\n'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 1024, 'stream': False, 'temperature': 0.3}}
+2026-01-09 21:53:55 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:58 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'962'), (b'x-ratelimit-remaining-tokens', b'7246'), (b'x-ratelimit-reset-requests', b'54m43.2s'), (b'x-ratelimit-reset-tokens', b'23.77s'), (b'x-request-id', b'req_01kek7fx9jegcbj9tkmk2vgw3n'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eac1abb27f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:55 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:55 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:55 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:58 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '962', 'x-ratelimit-remaining-tokens': '7246', 'x-ratelimit-reset-requests': '54m43.2s', 'x-ratelimit-reset-tokens': '23.77s', 'x-request-id': 'req_01kek7fx9jegcbj9tkmk2vgw3n', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eac1abb27f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.64s
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 792 chars
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+You want to send an email. The Open Negotiation AI Agent, specifically its Email Sending Agent subagent, will handle this task. This is the right choice because the Email Sending Agent is designed to automate the controlled distribution of emails, ensuring accurate communication and record retention. 
+
+Here's the response in the requested format:
+
+{
+  "summary": "You want to send an email",
+  "agent_description": "The Email Sending Agent automates the controlled distribution of Open Negotiation ...
+2026-01-09 21:53:55 | RAG_AGENT_ROUTER.CONVERSATION | ERROR | [SESSION test_verify_1768024434] Error generating confirmation: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\conversation_service.py", line 592, in ask_routing_confirmation
+    result = json.loads(response)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] ASSISTANT: Should I route you to Email Sending Agent?
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [RESPONSE TYPE] confirmation
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [PROPOSED ROUTING] Agent: Open Negotiation AI Agent, Subagent: Email Sending Agent
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [AWAITING] User confirmation (confirm_routing=true)
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [EXECUTION TIME] 1.95s
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | ================================================================================
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | ================================================================================
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [NEW REQUEST] Session: test_verify_1768024434
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [USER QUERY] Yes
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIG] CONVERSATION_MODE: True
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIG] QUERY_VALIDATION_ENABLED: True
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] RETRIEVED - Existing session, 2 messages
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 0] Skipping validation - Ongoing conversation (awaiting_conf=True)
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER | INFO | Retrieved 1 agents with subagents
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 1] Checking for agent inquiry...
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 5, Temperature: 0.0
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 1491 chars
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent's service.
+
+User Query: "Yes"
+
+CLASSIFICATION RULES:
+
+=== Answer "YES" (Agent Information Inquiry) ONLY if ===
+- User asks WHAT agents exist or are available
+- User asks WHAT agent can do / capabilities
+- User asks ABOUT agent features without wanting to use it yet
+- Examples: "list agents", "what agents do you have?", "can document agent create ppt?", "does emai...
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\logging\__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 1365: character maps to <undefined>
+Call stack:
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 44, in <module>
+    test_full_routing_flow()
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 25, in test_full_routing_flow
+    resp2 = chat("Yes", session_id)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\api\chat.py", line 133, in chat
+    if is_agent_inquiry(query):
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\agent_inquiry_service.py", line 47, in is_agent_inquiry
+    response = grok_call(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\llm_service.py", line 190, in grok_call
+    response = _grok_client.chat.completions.create(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 966, in request
+    request = self._build_request(options, retries_taken=retries_taken)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 480, in _build_request
+    log.debug("Request options: %s", model_dump(options, exclude_unset=True))
+Message: 'Request options: %s'
+Arguments: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-b61a636c-126c-462c-b1d6-209fe8c3b67d', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent\'s service.\n\nUser Query: "Yes"\n\nCLASSIFICATION RULES:\n\n=== Answer "YES" (Agent Information Inquiry) ONLY if ===\n- User asks WHAT agents exist or are available\n- User asks WHAT agent can do / capabilities\n- User asks ABOUT agent features without wanting to use it yet\n- Examples: "list agents", "what agents do you have?", "can document agent create ppt?", "does email agent handle gmail?"\n\n=== Answer "NO" (Service Request / Routing) ONLY if ===\n- User wants to USE / ACCESS an agent ("i want to use email agent", "send me to agent X")\n- User asks to ROUTE / REDIRECT to an agent ("route to email agent", "take me to document agent")\n- User is REQUESTING a service (even if it mentions an agent name)\n- User is ASKING FOR ACTION, not asking about capability\n- Examples: "I want to send emails", "use email agent", "route to email", "take me to document agent"\n\nKEY DISTINCTION - These are DIFFERENT:\n- "can email agent send emails?" \u2192 YES (asking about capability)\n- "I want to send emails" \u2192 NO (asking to use service)\n- "does document agent create ppt?" \u2192 YES (asking about capability)  \n- "create a ppt for me" \u2192 NO (asking for service)\n- "what is email agent?" \u2192 YES (asking about agent)\n- "I want to use email agent" \u2192 NO (asking to access/use)\n- "route to email agent" \u2192 NO (asking for routing)\n\nRespond with ONLY "yes" or "no" - nothing else:\nAnswer:'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 5, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:56 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-b61a636c-126c-462c-b1d6-209fe8c3b67d', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent\'s service.\n\nUser Query: "Yes"\n\nCLASSIFICATION RULES:\n\n=== Answer "YES" (Agent Information Inquiry) ONLY if ===\n- User asks WHAT agents exist or are available\n- User asks WHAT agent can do / capabilities\n- User asks ABOUT agent features without wanting to use it yet\n- Examples: "list agents", "what agents do you have?", "can document agent create ppt?", "does email agent handle gmail?"\n\n=== Answer "NO" (Service Request / Routing) ONLY if ===\n- User wants to USE / ACCESS an agent ("i want to use email agent", "send me to agent X")\n- User asks to ROUTE / REDIRECT to an agent ("route to email agent", "take me to document agent")\n- User is REQUESTING a service (even if it mentions an agent name)\n- User is ASKING FOR ACTION, not asking about capability\n- Examples: "I want to send emails", "use email agent", "route to email", "take me to document agent"\n\nKEY DISTINCTION - These are DIFFERENT:\n- "can email agent send emails?" \u2192 YES (asking about capability)\n- "I want to send emails" \u2192 NO (asking to use service)\n- "does document agent create ppt?" \u2192 YES (asking about capability)  \n- "create a ppt for me" \u2192 NO (asking for service)\n- "what is email agent?" \u2192 YES (asking about agent)\n- "I want to use email agent" \u2192 NO (asking to access/use)\n- "route to email agent" \u2192 NO (asking for routing)\n\nRespond with ONLY "yes" or "no" - nothing else:\nAnswer:'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 5, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:56 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:58 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'961'), (b'x-ratelimit-remaining-tokens', b'6817'), (b'x-ratelimit-reset-requests', b'56m9.6s'), (b'x-ratelimit-reset-tokens', b'25.915s'), (b'x-request-id', b'req_01kek7fxz1fhfr24f2vrnyvpg0'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eac5eed07f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:56 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:56 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:58 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '961', 'x-ratelimit-remaining-tokens': '6817', 'x-ratelimit-reset-requests': '56m9.6s', 'x-ratelimit-reset-tokens': '25.915s', 'x-request-id': 'req_01kek7fxz1fhfr24f2vrnyvpg0', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eac5eed07f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.25s
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 2 chars
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+no
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\logging\__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 78: character maps to <undefined>
+Call stack:
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 44, in <module>
+    test_full_routing_flow()
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 25, in test_full_routing_flow
+    resp2 = chat("Yes", session_id)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\api\chat.py", line 133, in chat
+    if is_agent_inquiry(query):
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\agent_inquiry_service.py", line 53, in is_agent_inquiry
+    logger.debug(f"[AGENT INQUIRY] Query: '{query}' \u2192 Result: {result}")
+Message: "[AGENT INQUIRY] Query: 'Yes' \u2192 Result: no"
+Arguments: ()
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER | DEBUG | [AGENT INQUIRY] Query: 'Yes' \u2192 Result: no
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [RESULT] Not an agent inquiry, proceeding to routing...
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [MODE] CONVERSATION_MODE = True
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] USER: Yes
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] ID: test_verify_1768024434
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] Clarifications asked so far: 1
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] Total messages in history: 3
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 3] Evaluating routing readiness...
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 1024, Temperature: 0.0
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 7643 chars
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are an intelligent routing and clarification engine.
+
+MODE 1: evaluate_user_response_for_routing
+--------------------------------------------------
+
+INPUTS YOU RECEIVE:
+- User query
+- List of agents
+
+YOUR GOAL:
+Determine whether the user query clearly maps to exactly ONE agent and ONE subagent.
+
+Conversation History:
+User: I want to send an email
+Assistant: Should I route you to Email Sending Agent?
+User: Yes
+
+Available Agents and Subagents:
+[AGENT] Name: Open Negotiation AI Agent
+  Descript...
+2026-01-09 21:53:56 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-b9383423-4ca9-4eac-886a-7948f0f19af2', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an intelligent routing and clarification engine.\n\nMODE 1: evaluate_user_response_for_routing\n--------------------------------------------------\n\nINPUTS YOU RECEIVE:\n- User query\n- List of agents\n\nYOUR GOAL:\nDetermine whether the user query clearly maps to exactly ONE agent and ONE subagent.\n\nConversation History:\nUser: I want to send an email\nAssistant: Should I route you to Email Sending Agent?\nUser: Yes\n\nAvailable Agents and Subagents:\n[AGENT] Name: Open Negotiation AI Agent\n  Description: The Open Negotiation AI Agent is the master orchestration and control agent responsible for managing the complete Open Negotiation workflow end-to-end. It enforces strict execution order, validates prerequisites, coordinates specialized sub-agents, handles user-triggered execution, prevents downstream failures, and guarantees data accuracy, compliance, and operational integrity. This agent does not perform business tasks itself but acts as a centralized controller, decision-maker, and workflow governor for all subordinate agents.\n  Capabilities: master workflow orchestration | sequential agent execution | sub-agent coordination | execution dependency enforcement | prerequisite validation control | user-triggered flow control | conditional agent invocation | workflow state management | process lifecycle management | failure isolation | downstream error prevention | execution gating | agent readiness verification | inter-agent communication control | global rule enforcement | process integrity enforcement | data integrity governance | compliance enforcement | auditability support | execution traceability | workflow transparency | status tracking | progress monitoring | execution confirmation handling | process halt on failure | safe recovery enforcement | modular agent architecture management | scalable workflow control | extensible agent framework support | system-wide validation checkpoints\n  Subagents under Open Negotiation AI Agent:\n    [SUBAGENT] Name: Quality Check Agent\n      Description: The Quality Check Agent acts as the mandatory gatekeeper for the Open Negotiation workflow. It validates the structural integrity, completeness, and correctness of all input files before any downstream processing is allowed. This agent ensures that required headers exist, mandatory fields are populated, data formats are correct, and no incomplete or invalid rows are present. Any failure immediately halts the workflow and returns actionable error feedback to the user.\n      Capabilities: file structure validation | primary sheet header validation | secondary sheet header validation | exact header matching enforcement | mandatory column verification | blank cell detection | missing value detection | incomplete row identification | row-level data validation | sheet-level validation | cross-sheet consistency checks | email metadata validation | format compliance checking | data completeness enforcement | early failure detection | workflow gatekeeping | process blocking on failure | error localization | clear error reporting | user-correctable feedback generation | validation result summarization | pass/fail decision signaling | downstream execution prevention | data readiness certification | input quality assurance | pre-processing risk elimination\n    [SUBAGENT] Name: Document Creation Agent\n      Description: The Document Creation Agent is responsible for generating all Open Negotiation documents using validated input data. It dynamically populates client-specific templates, applies branding rules, and produces standardized output files. This agent runs only after successful quality validation and explicit user approval, and it must complete all document generation tasks before any email activity can occur.\n      Capabilities: validated data consumption | client-specific document generation | dynamic data population | template-driven document creation | multi-format document output | docx generation | pdf generation | client branding application | client formatting enforcement | open negotiation notice creation | group-level data consolidation | excel group file generation | xlsx file creation | document completeness verification | document consistency enforcement | multi-client document handling | batch document generation | execution blocking until completion | output readiness signaling | document success confirmation | file integrity assurance | structured output organization | reproducible document generation | user-triggered execution compliance\n    [SUBAGENT] Name: Email Sending Agent\n      Description: The Email Sending Agent automates the controlled distribution of Open Negotiation emails to clients. It composes emails using validated metadata, attaches the correct documents, sends emails individually per client, downloads sent email records, and stores them systematically. This agent ensures accurate communication, traceability, and record retention for every sent email.\n      Capabilities: email metadata consumption | email subject handling | recipient mapping | cc handling | client-specific email composition | attachment association | document attachment validation | per-client email dispatch | individual email sending | email delivery execution | email success tracking | sent email downloading | email record preservation | email file storage | folder-based email organization | email count verification | communication traceability | email audit support | batch email processing | error isolation per email | completion confirmation signaling | post-send verification | controlled communication execution\n    [SUBAGENT] Name: File Rename Agent\n      Description: The File Rename Agent standardizes naming conventions for all Open Negotiation email files and folders. It applies predefined, structured naming rules to ensure consistency, traceability, and compliance with organizational standards. This agent runs only after all emails have been successfully sent and downloaded.\n      Capabilities: downloaded file identification | email file enumeration | standardized naming enforcement | file renaming automation | folder renaming automation | naming rule application | traceability enhancement | record standardization | post-processing execution | batch file handling | naming collision prevention | organizational compliance enforcement | structured archive creation | final output normalization | workflow finalization support | completion confirmation generation\n\n\nANALYSIS RULES:\n- Compare semantic meaning, intent, and task type — not just keywords.\n- Prefer the most specific subagent over a general agent.\n- Ignore partial or weak matches unless they strongly affect intent.\n- If the query reasonably fits MORE THAN ONE agent or subagent, treat it as ambiguous.\n\nDECISION RULES:\n1) If exactly ONE clear agent + subagent match exists:\n   - route = true\n2) If multiple agents or subagents are valid:\n   - route = false\n3) If intent is unclear or incomplete:\n   - route = false\n\nOUTPUT FORMAT (STRICT JSON):\n\nIf route = true:\n{\n  "route": true,\n  "agent": "<agent_name>",\n  "subagent": "<subagent_name or null>",\n  "confidence": <number between 0 and 1>,\n  "reasoning": "Concise explanation of why this agent/subagent is the best match"\n}\n\nIf route = false:\n{\n  "route": false,\n  "matched_candidates": [\n    {\n      "agent": "<agent_name>",\n      "subagent": "<subagent_name or null>",\n      "reasoning": "Why this candidate could match"\n    }\n  ],\n  "reasoning": "Why a single confident routing decision cannot be made"\n}\n\nIMPORTANT:\n- Do NOT ask questions in this mode\n- Do NOT suggest next steps\n- Only evaluate and return the decision\n'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 1024, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:56 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'960'), (b'x-ratelimit-remaining-tokens', b'5493'), (b'x-ratelimit-reset-requests', b'57m36s'), (b'x-ratelimit-reset-tokens', b'32.535s'), (b'x-request-id', b'req_01kek7fy6ve69s2dad9hc6d4d8'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eac7786d7f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:56 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:56 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:59 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '960', 'x-ratelimit-remaining-tokens': '5493', 'x-ratelimit-reset-requests': '57m36s', 'x-ratelimit-reset-tokens': '32.535s', 'x-request-id': 'req_01kek7fy6ve69s2dad9hc6d4d8', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eac7786d7f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.56s
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 438 chars
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+```json
+{
+  "route": true,
+  "agent": "Open Negotiation AI Agent",
+  "subagent": "Email Sending Agent",
+  "confidence": 0.9,
+  "reasoning": "The user query 'I want to send an email' and the confirmation 'Yes' to routing to Email Sending Agent clearly maps to the Email Sending Agent subagent under the Open Negotiation AI Agent, as it is responsible for automating the controlled distribution of Open Negotiation emails to clients."
+}
+```
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [ROUTING DECISION] Agent: Open Negotiation AI Agent, Confidence: 90.00%
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [READY TO ROUTE] Yes | Confidence: 90.00%
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [CONFIRMATION CHECK] awaiting_confirmation=True, query='Yes'
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIRMATION CHECK] System is awaiting confirmation. Checking if response is affirmative...
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 5, Temperature: 0.0
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 215 chars
+2026-01-09 21:53:56 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+Determine if this user response indicates agreement, confirmation, or approval.
+
+User Response: "Yes"
+
+Respond with ONLY "yes" or "no":
+- "yes" if user is confirming, agreeing, or approving
+- "no" otherwise
+
+Answer:
+2026-01-09 21:53:56 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-b72070f3-6ef7-4b40-988a-dda8d76edfe2', 'json_data': {'messages': [{'role': 'user', 'content': 'Determine if this user response indicates agreement, confirmation, or approval.\n\nUser Response: "Yes"\n\nRespond with ONLY "yes" or "no":\n- "yes" if user is confirming, agreeing, or approving\n- "no" otherwise\n\nAnswer:'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 5, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:56 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:56 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'959'), (b'x-ratelimit-remaining-tokens', b'5416'), (b'x-ratelimit-reset-requests', b'59m2.4s'), (b'x-ratelimit-reset-tokens', b'32.92s'), (b'x-request-id', b'req_01kek7fys4egfr7kqkjfe2ezfy'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eacb2b687f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:57 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:57 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:59 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '959', 'x-ratelimit-remaining-tokens': '5416', 'x-ratelimit-reset-requests': '59m2.4s', 'x-ratelimit-reset-tokens': '32.92s', 'x-request-id': 'req_01kek7fys4egfr7kqkjfe2ezfy', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eacb2b687f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.16s
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 3 chars
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+yes
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIRMATION CHECK] LLM says affirmative=True for query='Yes'
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 4.1] User confirmed, but client name or wave number missing. Asking for details...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] ASSISTANT: Great! Before I route you, I need two more details: the Client Name and the Wave Number. Could you p...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | ================================================================================
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [NEW REQUEST] Session: test_verify_1768024434
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [USER QUERY] Client is Google, Wave 10
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIG] CONVERSATION_MODE: True
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [CONFIG] QUERY_VALIDATION_ENABLED: True
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] RETRIEVED - Existing session, 4 messages
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 0] Skipping validation - Ongoing conversation (awaiting_conf=False)
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER | INFO | Retrieved 1 agents with subagents
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 1] Checking for agent inquiry...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 5, Temperature: 0.0
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 1513 chars
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent's service.
+
+User Query: "Client is Google, Wave 10"
+
+CLASSIFICATION RULES:
+
+=== Answer "YES" (Agent Information Inquiry) ONLY if ===
+- User asks WHAT agents exist or are available
+- User asks WHAT agent can do / capabilities
+- User asks ABOUT agent features without wanting to use it yet
+- Examples: "list agents", "what agents do you have?", "can document agent cr...
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\logging\__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 1387: character maps to <undefined>
+Call stack:
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 44, in <module>
+    test_full_routing_flow()
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 31, in test_full_routing_flow
+    resp3 = chat("Client is Google, Wave 10", session_id)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\api\chat.py", line 133, in chat
+    if is_agent_inquiry(query):
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\agent_inquiry_service.py", line 47, in is_agent_inquiry
+    response = grok_call(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\llm_service.py", line 190, in grok_call
+    response = _grok_client.chat.completions.create(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 966, in request
+    request = self._build_request(options, retries_taken=retries_taken)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\.venv\Lib\site-packages\groq\_base_client.py", line 480, in _build_request
+    log.debug("Request options: %s", model_dump(options, exclude_unset=True))
+Message: 'Request options: %s'
+Arguments: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-de76ab1e-b61b-46c1-9c06-50f0faa72ab5', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent\'s service.\n\nUser Query: "Client is Google, Wave 10"\n\nCLASSIFICATION RULES:\n\n=== Answer "YES" (Agent Information Inquiry) ONLY if ===\n- User asks WHAT agents exist or are available\n- User asks WHAT agent can do / capabilities\n- User asks ABOUT agent features without wanting to use it yet\n- Examples: "list agents", "what agents do you have?", "can document agent create ppt?", "does email agent handle gmail?"\n\n=== Answer "NO" (Service Request / Routing) ONLY if ===\n- User wants to USE / ACCESS an agent ("i want to use email agent", "send me to agent X")\n- User asks to ROUTE / REDIRECT to an agent ("route to email agent", "take me to document agent")\n- User is REQUESTING a service (even if it mentions an agent name)\n- User is ASKING FOR ACTION, not asking about capability\n- Examples: "I want to send emails", "use email agent", "route to email", "take me to document agent"\n\nKEY DISTINCTION - These are DIFFERENT:\n- "can email agent send emails?" \u2192 YES (asking about capability)\n- "I want to send emails" \u2192 NO (asking to use service)\n- "does document agent create ppt?" \u2192 YES (asking about capability)  \n- "create a ppt for me" \u2192 NO (asking for service)\n- "what is email agent?" \u2192 YES (asking about agent)\n- "I want to use email agent" \u2192 NO (asking to access/use)\n- "route to email agent" \u2192 NO (asking for routing)\n\nRespond with ONLY "yes" or "no" - nothing else:\nAnswer:'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 5, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:57 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-de76ab1e-b61b-46c1-9c06-50f0faa72ab5', 'json_data': {'messages': [{'role': 'user', 'content': 'You are an expert query classifier. Classify whether the user is asking FOR INFORMATION ABOUT agents, or asking TO USE/ACCESS an agent\'s service.\n\nUser Query: "Client is Google, Wave 10"\n\nCLASSIFICATION RULES:\n\n=== Answer "YES" (Agent Information Inquiry) ONLY if ===\n- User asks WHAT agents exist or are available\n- User asks WHAT agent can do / capabilities\n- User asks ABOUT agent features without wanting to use it yet\n- Examples: "list agents", "what agents do you have?", "can document agent create ppt?", "does email agent handle gmail?"\n\n=== Answer "NO" (Service Request / Routing) ONLY if ===\n- User wants to USE / ACCESS an agent ("i want to use email agent", "send me to agent X")\n- User asks to ROUTE / REDIRECT to an agent ("route to email agent", "take me to document agent")\n- User is REQUESTING a service (even if it mentions an agent name)\n- User is ASKING FOR ACTION, not asking about capability\n- Examples: "I want to send emails", "use email agent", "route to email", "take me to document agent"\n\nKEY DISTINCTION - These are DIFFERENT:\n- "can email agent send emails?" \u2192 YES (asking about capability)\n- "I want to send emails" \u2192 NO (asking to use service)\n- "does document agent create ppt?" \u2192 YES (asking about capability)  \n- "create a ppt for me" \u2192 NO (asking for service)\n- "what is email agent?" \u2192 YES (asking about agent)\n- "I want to use email agent" \u2192 NO (asking to access/use)\n- "route to email agent" \u2192 NO (asking for routing)\n\nRespond with ONLY "yes" or "no" - nothing else:\nAnswer:'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 5, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:57 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:53:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'958'), (b'x-ratelimit-remaining-tokens', b'5038'), (b'x-ratelimit-reset-requests', b'1h0m28.8s'), (b'x-ratelimit-reset-tokens', b'34.81s'), (b'x-request-id', b'req_01kek7fyyre6at0ej0v8c55z4m'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eacc4c2b7f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:57 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:57 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:53:59 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '958', 'x-ratelimit-remaining-tokens': '5038', 'x-ratelimit-reset-requests': '1h0m28.8s', 'x-ratelimit-reset-tokens': '34.81s', 'x-request-id': 'req_01kek7fyyre6at0ej0v8c55z4m', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eacc4c2b7f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.18s
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 2 chars
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+no
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\logging\__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+  File "C:\Users\SukanthanKamaraj\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 100: character maps to <undefined>
+Call stack:
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 44, in <module>
+    test_full_routing_flow()
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\verify_routing_details.py", line 31, in test_full_routing_flow
+    resp3 = chat("Client is Google, Wave 10", session_id)
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\api\chat.py", line 133, in chat
+    if is_agent_inquiry(query):
+  File "C:\AI APPlication\RAG AI dec 25 v2\RAG AI dec 25 v2\app\services\agent_inquiry_service.py", line 53, in is_agent_inquiry
+    logger.debug(f"[AGENT INQUIRY] Query: '{query}' \u2192 Result: {result}")
+Message: "[AGENT INQUIRY] Query: 'Client is Google, Wave 10' \u2192 Result: no"
+Arguments: ()
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER | DEBUG | [AGENT INQUIRY] Query: 'Client is Google, Wave 10' \u2192 Result: no
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [RESULT] Not an agent inquiry, proceeding to routing...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [MODE] CONVERSATION_MODE = True
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] USER: Client is Google, Wave 10
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] ID: test_verify_1768024434
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] Clarifications asked so far: 1
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION] Total messages in history: 5
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 3.1] System is awaiting client name and wave number...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 256, Temperature: 0.0
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 480 chars
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+Extract the Client Name and Wave Number from the following user response.
+    
+User Response: "Client is Google, Wave 10"
+
+Return the details in STRICT JSON format:
+{
+  "client_name": "extracted name or null",
+  "wave_number": "extracted wave number or null"
+}
+
+RULES:
+- If client name is mentioned (e.g., "Client is Google", "Google"), extract it.
+- If wave number is mentioned (e.g., "Wave 10", "10", "Wave: 12"), extract it.
+- If not present, use null.
+- Return ONLY the JSON.
+
+2026-01-09 21:53:57 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-18fc02d5-a52a-4e00-8d7f-e06592fefcf6', 'json_data': {'messages': [{'role': 'user', 'content': 'Extract the Client Name and Wave Number from the following user response.\n    \nUser Response: "Client is Google, Wave 10"\n\nReturn the details in STRICT JSON format:\n{\n  "client_name": "extracted name or null",\n  "wave_number": "extracted wave number or null"\n}\n\nRULES:\n- If client name is mentioned (e.g., "Client is Google", "Google"), extract it.\n- If wave number is mentioned (e.g., "Wave 10", "10", "Wave: 12"), extract it.\n- If not present, use null.\n- Return ONLY the JSON.\n'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 256, 'stream': False, 'temperature': 0.0}}
+2026-01-09 21:53:57 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:54:00 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'957'), (b'x-ratelimit-remaining-tokens', b'4927'), (b'x-ratelimit-reset-requests', b'1h1m55.2s'), (b'x-ratelimit-reset-tokens', b'35.365s'), (b'x-request-id', b'req_01kek7fz70fhhr58v1553mgmf7'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eacdcd4e7f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:57 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:57 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:54:00 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '957', 'x-ratelimit-remaining-tokens': '4927', 'x-ratelimit-reset-requests': '1h1m55.2s', 'x-ratelimit-reset-tokens': '35.365s', 'x-request-id': 'req_01kek7fz70fhhr58v1553mgmf7', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eacdcd4e7f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.24s
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 52 chars
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+{
+  "client_name": "Google",
+  "wave_number": "10"
+}
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [DETAILS COLLECTED] Client: Google, Wave: 10
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [ROUTING DECISION] Agent: Open Negotiation AI Agent, Confidence: 100.00%
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [READY TO ROUTE] Yes | Confidence: 100.00%
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [CONFIRMATION CHECK] awaiting_confirmation=False, query='Client is Google, Wave 10'
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [CONFIRMATION CHECK] Not awaiting confirmation, returning False
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [STAGE 4] Asking for confirmation before routing...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [SESSION test_verify_1768024434] CONFIRMATION STAGE - Asking user to confirm routing to Open Negotiation AI Agent/Email Sending Agent
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] Using Grok to generate confirmation
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CALL] Starting Grok API call...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK CONFIG] Model: llama-3.3-70b-versatile, Max tokens: 1024, Temperature: 0.3
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Length: 7875 chars
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK PROMPT] Content:
+You are a helpful assistant confirming a user's agent routing decision.
+
+Conversation History:
+User: I want to send an email
+Assistant: Should I route you to Email Sending Agent?
+User: Yes
+Assistant: Great! Before I route you, I need two more details: the Client Name and the Wave Number. Could you please provide these?
+User: Client is Google, Wave 10
+
+Proposed Routing:
+- Agent: Open Negotiation AI Agent
+- Subagent: Email Sending Agent
+
+Available Agents and Subagents:
+[AGENT] Name: Open Negotiati...
+2026-01-09 21:53:57 | groq._base_client | DEBUG | Request options: {'method': 'post', 'url': '/openai/v1/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-5f4ab0e2-66b7-436e-b48d-92058c92f4f7', 'json_data': {'messages': [{'role': 'user', 'content': 'You are a helpful assistant confirming a user\'s agent routing decision.\n\nConversation History:\nUser: I want to send an email\nAssistant: Should I route you to Email Sending Agent?\nUser: Yes\nAssistant: Great! Before I route you, I need two more details: the Client Name and the Wave Number. Could you please provide these?\nUser: Client is Google, Wave 10\n\nProposed Routing:\n- Agent: Open Negotiation AI Agent\n- Subagent: Email Sending Agent\n\nAvailable Agents and Subagents:\n[AGENT] Name: Open Negotiation AI Agent\n  Description: The Open Negotiation AI Agent is the master orchestration and control agent responsible for managing the complete Open Negotiation workflow end-to-end. It enforces strict execution order, validates prerequisites, coordinates specialized sub-agents, handles user-triggered execution, prevents downstream failures, and guarantees data accuracy, compliance, and operational integrity. This agent does not perform business tasks itself but acts as a centralized controller, decision-maker, and workflow governor for all subordinate agents.\n  Capabilities: master workflow orchestration | sequential agent execution | sub-agent coordination | execution dependency enforcement | prerequisite validation control | user-triggered flow control | conditional agent invocation | workflow state management | process lifecycle management | failure isolation | downstream error prevention | execution gating | agent readiness verification | inter-agent communication control | global rule enforcement | process integrity enforcement | data integrity governance | compliance enforcement | auditability support | execution traceability | workflow transparency | status tracking | progress monitoring | execution confirmation handling | process halt on failure | safe recovery enforcement | modular agent architecture management | scalable workflow control | extensible agent framework support | system-wide validation checkpoints\n  Subagents under Open Negotiation AI Agent:\n    [SUBAGENT] Name: Quality Check Agent\n      Description: The Quality Check Agent acts as the mandatory gatekeeper for the Open Negotiation workflow. It validates the structural integrity, completeness, and correctness of all input files before any downstream processing is allowed. This agent ensures that required headers exist, mandatory fields are populated, data formats are correct, and no incomplete or invalid rows are present. Any failure immediately halts the workflow and returns actionable error feedback to the user.\n      Capabilities: file structure validation | primary sheet header validation | secondary sheet header validation | exact header matching enforcement | mandatory column verification | blank cell detection | missing value detection | incomplete row identification | row-level data validation | sheet-level validation | cross-sheet consistency checks | email metadata validation | format compliance checking | data completeness enforcement | early failure detection | workflow gatekeeping | process blocking on failure | error localization | clear error reporting | user-correctable feedback generation | validation result summarization | pass/fail decision signaling | downstream execution prevention | data readiness certification | input quality assurance | pre-processing risk elimination\n    [SUBAGENT] Name: Document Creation Agent\n      Description: The Document Creation Agent is responsible for generating all Open Negotiation documents using validated input data. It dynamically populates client-specific templates, applies branding rules, and produces standardized output files. This agent runs only after successful quality validation and explicit user approval, and it must complete all document generation tasks before any email activity can occur.\n      Capabilities: validated data consumption | client-specific document generation | dynamic data population | template-driven document creation | multi-format document output | docx generation | pdf generation | client branding application | client formatting enforcement | open negotiation notice creation | group-level data consolidation | excel group file generation | xlsx file creation | document completeness verification | document consistency enforcement | multi-client document handling | batch document generation | execution blocking until completion | output readiness signaling | document success confirmation | file integrity assurance | structured output organization | reproducible document generation | user-triggered execution compliance\n    [SUBAGENT] Name: Email Sending Agent\n      Description: The Email Sending Agent automates the controlled distribution of Open Negotiation emails to clients. It composes emails using validated metadata, attaches the correct documents, sends emails individually per client, downloads sent email records, and stores them systematically. This agent ensures accurate communication, traceability, and record retention for every sent email.\n      Capabilities: email metadata consumption | email subject handling | recipient mapping | cc handling | client-specific email composition | attachment association | document attachment validation | per-client email dispatch | individual email sending | email delivery execution | email success tracking | sent email downloading | email record preservation | email file storage | folder-based email organization | email count verification | communication traceability | email audit support | batch email processing | error isolation per email | completion confirmation signaling | post-send verification | controlled communication execution\n    [SUBAGENT] Name: File Rename Agent\n      Description: The File Rename Agent standardizes naming conventions for all Open Negotiation email files and folders. It applies predefined, structured naming rules to ensure consistency, traceability, and compliance with organizational standards. This agent runs only after all emails have been successfully sent and downloaded.\n      Capabilities: downloaded file identification | email file enumeration | standardized naming enforcement | file renaming automation | folder renaming automation | naming rule application | traceability enhancement | record standardization | post-processing execution | batch file handling | naming collision prevention | organizational compliance enforcement | structured archive creation | final output normalization | workflow finalization support | completion confirmation generation\n\n\nDYNAMIC CONFIRMATION TASK:\nCreate a natural, conversational confirmation message that:\n1. Reflects back what the user wants to do (show you understood)\n2. Names the agent/subagent that will handle it\n3. Briefly explains why this is the right choice\n4. Asks for confirmation in a NATURAL WAY (NOT always "Does that sound correct?")\n\nCRITICAL - VARY THE CONFIRMATION ENDINGS:\nDO NOT use template endings like "Does that sound correct?" every time.\nInstead, use dynamic endings based on the context, such as:\n- "Ready to get started?"\n- "Should we move forward with this?"\n- "Want me to route you there?"\n- "Let\'s do it?"\n- "Shall I connect you?"\n- "That work for you?"\n- "Sound good?"\n- "Alright with that plan?"\n- Use natural language that matches the user\'s tone and the task type\n\nGUIDANCE:\n- For urgent/important tasks: More direct ("Ready to proceed?")\n- For exploratory tasks: More casual ("Want to give it a try?")\n- For routine tasks: More straightforward ("Should we move forward?")\n- Match the personality/energy of the task\n\nKeep it concise and natural. Avoid excessive formatting.\n\nResponse Format (JSON):\n{\n  "summary": "What user wants to do - in their voice/context",\n  "agent_description": "What this agent does",\n  "confirmation_message": "Full natural message with varied ending - NOT templated"\n}\n\nGenerate a UNIQUE confirmation message with a NATURAL, VARIED ending:\n'}], 'model': 'llama-3.3-70b-versatile', 'max_tokens': 1024, 'stream': False, 'temperature': 0.3}}
+2026-01-09 21:53:57 | groq._base_client | DEBUG | Sending HTTP Request: POST https://api.groq.com/openai/v1/chat/completions
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_headers.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_body.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | send_request_body.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_headers.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 10 Jan 2026 05:54:00 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'gzip'), (b'Cache-Control', b'private, max-age=0, no-store, no-cache, must-revalidate'), (b'vary', b'Origin'), (b'x-groq-region', b'bom'), (b'x-ratelimit-limit-requests', b'1000'), (b'x-ratelimit-limit-tokens', b'12000'), (b'x-ratelimit-remaining-requests', b'956'), (b'x-ratelimit-remaining-tokens', b'3519'), (b'x-ratelimit-reset-requests', b'1h3m21.6s'), (b'x-ratelimit-reset-tokens', b'42.405s'), (b'x-request-id', b'req_01kek7fzbhegg8mxp2fyynzerr'), (b'via', b'1.1 google'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=15552000'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9bb9eacece2d7f7a-MAA'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2026-01-09 21:53:57 | httpx | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.started request=<Request [b'POST']>
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | receive_response_body.complete
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.started
+2026-01-09 21:53:57 | httpcore.http11 | DEBUG | response_closed.complete
+2026-01-09 21:53:57 | groq._base_client | DEBUG | HTTP Response: POST https://api.groq.com/openai/v1/chat/completions "200 OK" Headers({'date': 'Sat, 10 Jan 2026 05:54:00 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'content-encoding': 'gzip', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate', 'vary': 'Origin', 'x-groq-region': 'bom', 'x-ratelimit-limit-requests': '1000', 'x-ratelimit-limit-tokens': '12000', 'x-ratelimit-remaining-requests': '956', 'x-ratelimit-remaining-tokens': '3519', 'x-ratelimit-reset-requests': '1h3m21.6s', 'x-ratelimit-reset-tokens': '42.405s', 'x-request-id': 'req_01kek7fzbhegg8mxp2fyynzerr', 'via': '1.1 google', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=15552000', 'server': 'cloudflare', 'cf-ray': '9bb9eacece2d7f7a-MAA', 'alt-svc': 'h3=":443"; ma=86400'})
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Time: 0.54s
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Length: 561 chars
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.LLM | DEBUG | [GROK RESPONSE] Content:
+{
+  "summary": "You want to send an email to Google, which is part of Wave 10",
+  "agent_description": "The Email Sending Agent will handle this task, as it's responsible for automating the controlled distribution of Open Negotiation emails to clients",
+  "confirmation_message": "You're looking to send an email to Google as part of Wave 10, and the Email Sending Agent is the perfect fit for this task since it can compose and send emails with validated metadata and attachments. Shall I connect yo...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] Confirmation message generated for Open Negotiation AI Agent
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | DEBUG | [SESSION test_verify_1768024434] ASSISTANT: You're looking to send an email to Google as part of Wave 10, and the Email Sending Agent is the per...
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [RESPONSE TYPE] confirmation
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [PROPOSED ROUTING] Agent: Open Negotiation AI Agent, Subagent: Email Sending Agent
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [AWAITING] User confirmation (confirm_routing=true)
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | [EXECUTION TIME] 0.98s
+2026-01-09 21:53:57 | RAG_AGENT_ROUTER.CONVERSATION | INFO | ================================================================================
+
+=== Testing Full Routing Flow (Session: test_verify_1768024434) ===
+
+[STEP 1] User: I want to send an email
+Assistant Type: confirmation
+Assistant: Should I route you to Email Sending Agent?
+
+[STEP 2] User: Yes
+Assistant Type: clarification
+Assistant: Great! Before I route you, I need two more details: the Client Name and the Wave Number. Could you please provide these?
+
+[STEP 3] User: Client is Google, Wave 10
+Assistant Type: confirmation
+Assistant: You're looking to send an email to Google as part of Wave 10, and the Email Sending Agent is the perfect fit for this task since it can compose and send emails with validated metadata and attachments. Shall I connect you to the Email Sending Agent to get this email on its way?
+2026-01-09 21:53:58 | httpcore.connection | DEBUG | close.started
+2026-01-09 21:53:58 | httpcore.connection | DEBUG | close.complete

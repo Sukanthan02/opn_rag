@@ -175,6 +175,12 @@ def chat(query: str, session_id: Optional[str] = None):
         conversation_logger.info("[STAGE 3] Evaluating routing readiness...")
         routing_decision = evaluate_user_response_for_routing(session, query, agents_data)
         
+        # Store extracted parameters in session
+        if routing_decision.get("client_name"):
+            session.client_name = routing_decision.get("client_name")
+        if routing_decision.get("wave_number"):
+            session.wave_number = routing_decision.get("wave_number")
+            
         # New Logic: Check 'route' boolean
         should_route = routing_decision.get("route", False)
         
@@ -186,9 +192,7 @@ def chat(query: str, session_id: Optional[str] = None):
             conversation_logger.info(f"[ROUTING DECISION] Agent: {agent_name}, Confidence: {confidence:.2%}")
             conversation_logger.info(f"[READY TO ROUTE] Yes | Confidence: {confidence:.2%}")
             
-            # =====================================
-            # STEP 2c: ASK CONFIRMATION (unless naturally confirmed)
-            # =====================================
+            # Mandatory confirmation (removing skip_confirmation logic)
             if not is_confirmation_response(query, session):
                 conversation_logger.info("[STAGE 4] Asking for confirmation before routing...")
                 session.clarifications_asked += 1
@@ -220,7 +224,27 @@ def chat(query: str, session_id: Optional[str] = None):
                     "routing_target": confirmation.get("routing_target", "")
                 }
             else:
-                # User confirmed, proceed with routing
+                # User confirmed OR we are skipping confirmation (all parameters present)
+                # CRITICAL CHECK: Even if confirmed, we MUST have parameters to route
+                has_all_params = session.client_name and session.wave_number
+                
+                if not has_all_params:
+                    conversation_logger.info("[STAGE 4] User confirmed agent, but parameters are missing. Asking for parameters...")
+                    session.awaiting_confirmation = False # Reset confirmation flag
+                    
+                    # Call clarification to ask specifically for parameters
+                    # since should_route was incorrectly True or we are in a confirmation state
+                    clarification = ask_progressive_clarification(session, agents_data, [{"agent": agent_name, "subagent": subagent_name}])
+                    session.add_message("assistant", clarification.get("clarification_question", ""))
+                    
+                    conversation_logger.info(f"[RESPONSE TYPE] clarification (for params)")
+                    return {
+                        "type": "clarification",
+                        "response": clarification.get("clarification_question", ""),
+                        "session_id": session.session_id,
+                        "suggested_agents": clarification.get("suggested_agents", [])
+                    }
+
                 # =====================================
                 # STEP 2d: FINAL ROUTING
                 # =====================================
@@ -242,6 +266,14 @@ def chat(query: str, session_id: Optional[str] = None):
                 routing_logger.info(f"[CLARIFICATION ROUNDS] {session.clarifications_asked}")
                 routing_logger.info(f"[FINAL MESSAGE] {message}")
                 
+                # Include client_name and wave_number in the routing JSON
+                routing_payload = {
+                    "agent": agent_name,
+                    "subagent": subagent_name,
+                    "client_name": session.client_name,
+                    "wave_number": session.wave_number
+                }
+                
                 # Clean up session after routing
                 delete_session(session.session_id)
                 conversation_logger.info(f"[SESSION] Cleaned up after routing")
@@ -250,14 +282,14 @@ def chat(query: str, session_id: Optional[str] = None):
                 conversation_logger.info("=" * 80)
                 
                 # Log user response
-                user_logger.info(f"[ACTIVATED] Routing (Confirmed)")
+                user_logger.info(f"[ACTIVATED] Routing (Direct/Confirmed)")
                 user_logger.info(f"[ROUTED TO] {agent_name}" + (f"/{subagent_name}" if subagent_name else ""))
                 user_logger.info(f"Assistant: {message}")
                 user_logger.info("=" * 80)
                 
                 return {
                     "type": "routing",
-                    "routing": '{"agent": "' + agent_name + '", "subagent": ' + ('null' if not subagent_name else '"' + subagent_name + '"') + '}',
+                    "routing": json.dumps(routing_payload),
                     "message": message
                 }
         else:
